@@ -238,31 +238,29 @@
 <script>
     // JavaScript to hide/show navbar items and shrink navbar height on scroll
     let prevScrollPos = window.pageYOffset;
+const navbar = document.getElementById("navbar");
 const navbarTop = document.getElementById("navbar-top");
-const navbarLogo = document.getElementById("navbar-logo");
-const navbarLinks = document.getElementById("navbar-links");
 const categorySection = document.getElementById("category-section");
 
 window.onscroll = function() {
   let currentScrollPos = window.pageYOffset;
-  
-  // When scrolling down
-  if (prevScrollPos < currentScrollPos) {
-    // Apply the transform to shrink and hide the navbar smoothly
-    navbarTop.style.transform = "translateY(-100%)";  // Shrinks and hides the top navbar (logo, links)
-    navbarLogo.style.opacity = "0";  // Fade out the logo
-    navbarLinks.style.opacity = "0";  // Fade out the links
-    categorySection.style.paddingTop = "16px";  // Adjust padding for the category section
-  } else {
-    // When scrolling up, restore the navbar to its original state
-    navbarTop.style.transform = "translateY(0)";  // Reset the navbar to its original position
-    navbarLogo.style.opacity = "1";  // Restore the logo visibility
-    navbarLinks.style.opacity = "1";  // Restore the links visibility
-    categorySection.style.paddingTop = "40px"; // Adjust padding back
+
+  // Check if the scroll position has changed significantly
+  if (prevScrollPos < currentScrollPos && currentScrollPos > 100) {
+    // If scrolling down, shrink navbar and hide items
+    navbar.classList.add("shrunk");
+    navbar.classList.remove("expanded");
+  } else if (prevScrollPos > currentScrollPos) {
+    // If scrolling up, expand navbar and show items
+    navbar.classList.add("expanded");
+    navbar.classList.remove("shrunk");
   }
-  
+
+  // Update scroll position
   prevScrollPos = currentScrollPos;
 };
+// navbar ends
+// carousel start
     const carouselImages = document.querySelector('.carousel-images');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
