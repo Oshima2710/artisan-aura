@@ -81,12 +81,13 @@
 <div class="w-full max-w-full mx-auto">
     <!-- Fullscreen Navbar -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-xl shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
-        <div class="px-6 py-4 flex items-center justify-between" id="navbar-top">
+        <!-- Navbar Content (Top Section) -->
+        <div class="px-6 py-4 flex items-center justify-between transition-all duration-300" id="navbar-top">
             <!-- Logo and Links -->
-            <h1 class="text-2xl font-bold flex items-center gap-2">
+            <h1 class="text-2xl font-bold flex items-center gap-2 transition-all duration-300" id="navbar-logo">
                 ArtisanAura
             </h1>
-            <div class="flex items-center gap-8">
+            <div class="flex items-center gap-8" id="navbar-links">
                 <!-- Login Link -->
                 <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
                     <span class="material-symbols-outlined">login</span> Login 
@@ -102,10 +103,11 @@
             </div>
         </div>
         
+        <!-- Category Section -->
         <div class="px-6 py-4" id="category-section">
-            <div class="flex items-center justify-center"> <!-- Centering the entire content -->
+            <div class="flex items-center justify-center">
                 <!-- Category List -->
-                <div class="flex items-center gap-8"> <!-- Flex container for categories -->
+                <div class="flex items-center gap-8">
                     <!-- Category 1 -->
                     <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                         UTILITY
@@ -130,12 +132,11 @@
                     <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                         WALL DECOR
                     </a>
-                    <!-- Add more categories as needed -->
                 </div>
             </div>
         </div> 
     </nav>
-
+    
     <div class="flex flex-col md:flex-row gap-4 my-8">
         <!-- About Us Section (Taking full left screen) -->
         <div class="md:w-2/3 h-[600px] relative rounded-xl overflow-hidden  bg-cover bg-center">
@@ -207,6 +208,29 @@
 </div>
 
 <script>
+    // JavaScript to hide/show navbar items and shrink navbar height on scroll
+let prevScrollPos = window.pageYOffset;
+const navbarTop = document.getElementById("navbar-top");
+const navbarLogo = document.getElementById("navbar-logo");
+const navbarLinks = document.getElementById("navbar-links");
+const categorySection = document.getElementById("category-section");
+
+window.onscroll = function() {
+  let currentScrollPos = window.pageYOffset;
+  
+  // If scrolling down
+  if (prevScrollPos < currentScrollPos) {
+    // Shrink navbar height and show only the category section
+    navbarTop.style.height = "0px";  // Hide logo and links
+    categorySection.style.paddingTop = "16px"; // Add some padding to the category section when navbar shrinks
+  } else {
+    // Reset navbar to original size
+    navbarTop.style.height = "auto";  // Show logo and links again
+    categorySection.style.paddingTop = "40px"; // Adjust category padding
+  }
+  
+  prevScrollPos = currentScrollPos;
+};
     const carouselImages = document.querySelector('.carousel-images');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');
