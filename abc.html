@@ -74,6 +74,34 @@
         .carousel-indicators button.active {
             background-color: white;
         }
+        /* navbar*/
+        #navbar-top {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#navbar-logo,
+#navbar-links {
+  transition: opacity 0.3s ease;
+}
+
+#navbar.shrunk #navbar-top {
+  transform: translateY(-100%); /* Hide the top navbar when scrolled */
+  opacity: 0; /* Hide logo and links */
+}
+
+#navbar.shrunk #category-section {
+  padding-top: 16px; /* Reduce the padding for the category section */
+}
+
+#navbar .expanded #navbar-top {
+  transform: translateY(0); /* Restore the top navbar when scrolled up */
+  opacity: 1; /* Show the logo and links */
+}
+
+#navbar .expanded #category-section {
+  padding-top: 40px; /* Restore padding for category section */
+}
+
     </style>
 </head>
 <body class="font-sans bg-gray-100">
@@ -136,7 +164,7 @@
             </div>
         </div> 
     </nav>
-    
+        
     <div class="flex flex-col md:flex-row gap-4 my-8">
         <!-- About Us Section (Taking full left screen) -->
         <div class="md:w-2/3 h-[600px] relative rounded-xl overflow-hidden  bg-cover bg-center">
@@ -209,7 +237,7 @@
 
 <script>
     // JavaScript to hide/show navbar items and shrink navbar height on scroll
-let prevScrollPos = window.pageYOffset;
+    let prevScrollPos = window.pageYOffset;
 const navbarTop = document.getElementById("navbar-top");
 const navbarLogo = document.getElementById("navbar-logo");
 const navbarLinks = document.getElementById("navbar-links");
@@ -218,15 +246,19 @@ const categorySection = document.getElementById("category-section");
 window.onscroll = function() {
   let currentScrollPos = window.pageYOffset;
   
-  // If scrolling down
+  // When scrolling down
   if (prevScrollPos < currentScrollPos) {
-    // Shrink navbar height and show only the category section
-    navbarTop.style.height = "0px";  // Hide logo and links
-    categorySection.style.paddingTop = "16px"; // Add some padding to the category section when navbar shrinks
+    // Apply the transform to shrink and hide the navbar smoothly
+    navbarTop.style.transform = "translateY(-100%)";  // Shrinks and hides the top navbar (logo, links)
+    navbarLogo.style.opacity = "0";  // Fade out the logo
+    navbarLinks.style.opacity = "0";  // Fade out the links
+    categorySection.style.paddingTop = "16px";  // Adjust padding for the category section
   } else {
-    // Reset navbar to original size
-    navbarTop.style.height = "auto";  // Show logo and links again
-    categorySection.style.paddingTop = "40px"; // Adjust category padding
+    // When scrolling up, restore the navbar to its original state
+    navbarTop.style.transform = "translateY(0)";  // Reset the navbar to its original position
+    navbarLogo.style.opacity = "1";  // Restore the logo visibility
+    navbarLinks.style.opacity = "1";  // Restore the links visibility
+    categorySection.style.paddingTop = "40px"; // Adjust padding back
   }
   
   prevScrollPos = currentScrollPos;
