@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <!-- Importing Material Icons and Font Awesome -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div id="webcrumbs">
+    <div class="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+          <h1 class="text-2xl font-bold flex items-center justify-center gap-2 mb-2">
+            ArtisanAura
+          </h1>
+          <p class="text-gray-600">Welcome back! Please login to your account.</p>
+        </div>
+
+        <!-- Login Form -->
+        <form class="space-y-6">
+          <!-- Email Field -->
+          <div>
+            <label class="block text-sm font-medium mb-2">Email Address</label>
+            <div class="relative">
+              <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
+              <input 
+                type="email" 
+                placeholder="Enter your email"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" 
+              />
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div>
+            <label class="block text-sm font-medium mb-2">Password</label>
+            <div class="relative">
+              <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
+              <input 
+                type="password" 
+                placeholder="Enter your password"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" 
+              />
+            </div>
+          </div>
+
+          <!-- Remember Me and Forgot Password -->
+          <div class="flex items-center justify-between">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
+              <span class="text-sm">Remember me</span>
+            </label>
+            <a href="/forgot-password" class="text-sm text-orange-500 hover:text-orange-600 transition-colors">Forgot password?</a>
+          </div>
+
+          <!-- Sign In Button -->
+          <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300">
+            Sign In
+          </button>
+        </form>
+
+        <!-- Sign Up Link -->
+        <div class="mt-6 text-center">
+          <p class="text-gray-600">
+            Don't have an account? 
+            <a href="usersignup.html" class="text-orange-500 hover:text-orange-600 transition-colors ml-1">Sign up</a>
+          </p>
+        </div>
+
+        <!-- Social Media Login -->
+        <div class="mt-8">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-3 gap-3">
+            <a href="https://your-website.com/auth/google" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <i class="fa-brands fa-google text-red-500 text-xl"></i>
+            </a>
+            <a href="https://your-website.com/auth/facebook" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+            </a>
+            <a href="https://your-website.com/auth/apple" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <i class="fa-brands fa-apple text-xl"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to check if the user is already signed up and stored in localStorage
+    function getUserData() {
+      return JSON.parse(localStorage.getItem('user')) || null;
+    }
+
+    // Handle form submission
+    document.getElementById('login-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the email and password entered by the user
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      // Get the stored user data from localStorage
+      const user = getUserData();
+
+      // Check if the user exists and if the email and password match
+      if (user && user.email === email && user.password === password) {
+        alert('Login successful!');
+        // Redirect user to the dashboard or home page
+        window.location.href = 'dashboard.html'; // Replace with your dashboard URL
+      } else {
+        alert('Invalid email or password. Please sign up first.');
+      }
+    });
+  </script>
+
+</body>
+</html>

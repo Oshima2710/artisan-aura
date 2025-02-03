@@ -1,77 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtisanAura</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Product Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Carousel Container */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .carousel-images {
-            display: flex;
-            transition: transform 1s ease;
-            width: 100%;
-            height: 100%;
-        }
-
-        .carousel-images img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .carousel-arrow-left {
-            left: 10px;
-        }
-
-        .carousel-arrow-right {
-            right: 10px;
-        }
-
-        .carousel-indicators {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-        }
-
-        .carousel-indicators button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            border: none;
-            cursor: pointer;
-        }
-
-        .carousel-indicators button.active {
-            background-color: white;
-        }
-
         /* Navbar */
         #navbar-top {
             transition: transform 0.3s ease, opacity 0.3s ease;
@@ -99,163 +35,172 @@
         #navbar .expanded #category-section {
             padding-top: 40px;
         }
-
     </style>
 </head>
-<body class="font-sans bg-gray-100">
 
-<div class="w-full max-w-full mx-auto">
+<body class="bg-gray-100">
     <!-- Fullscreen Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-xl shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
-        <!-- Navbar Content (Top Section) -->
-        <div class="px-6 py-4 flex items-center justify-between transition-all duration-300" id="navbar-top">
-            <!-- Logo and Links -->
-            <h1 class="text-2xl font-bold flex items-center gap-2 transition-all duration-300" id="navbar-logo">
-                ArtisanAura
-            </h1>
-            <div class="flex items-center gap-8" id="navbar-links">
-                <!-- Login Link -->
-                <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
-                    <span class="material-symbols-outlined">login</span> Login 
-                </a>
-                <!-- Cart Link -->
-                <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
-                    <span class="material-symbols-outlined">shopping_cart</span> Cart 
-                </a>
-                <!-- Become a Seller Link -->
-                <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
-                    <span class="material-symbols-outlined">sell</span> Become a Seller 
-                </a>
-            </div>
-        </div>
-        
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
         <!-- Category Section -->
         <div class="px-6 py-4" id="category-section">
             <div class="flex items-center justify-center">
-                <!-- Category List -->
                 <div class="flex items-center gap-8">
-                    <!-- Category 1 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        UTILITY
-                    </a>
-                    <!-- Category 2 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        LIGHTINGS
-                    </a>
-                    <!-- Category 3 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        HOME DECOR
-                    </a>
-                    <!-- Category 4 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        POTTERY
-                    </a>
-                    <!-- Category 5 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        WOODEN CRAFT
-                    </a>
-                    <!-- Category 6 -->
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                        WALL DECOR
-                    </a>
+                    <!-- Category 1 (UTILITY) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('UTILITY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            UTILITY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">BASKETS</a>
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">TRUNK BOXES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 (LIGHTINGS) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('LIGHTINGS')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            LIGHTINGS
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 (HOME DECOR) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('HOME_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            HOME DECOR
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 (POTTERY) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('POTTERY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            POTTERY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">PLANTERS</a>
+                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">VASES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 (WOODEN CRAFT) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN CRAFT
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 1</a>
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 2</a>
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 3</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 6 (WALL DECOR) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('WALL_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WALL DECOR
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 1</a>
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 2</a>
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 3</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </nav>
-        
-    <div class="flex flex-col md:flex-row gap-4 my-8">
-        <!-- About Us Section (Taking full left screen) -->
-        <div class="md:w-2/3 h-[600px] relative rounded-xl overflow-hidden bg-cover bg-center">
-            <!-- Peach-colored background box -->
-            <div class="absolute inset-0 bg-[#94d2bd] bg-opacity-80 p-8 rounded-xl flex items-center justify-center">
-                <div class="max-w-xl">
-                    <h2 class="text-5xl font-bold mb-6 text-black">ArtisanAura: Crafting a Vibrant Online Marketplace</h2>
-                    <p class="text-xl leading-relaxed text-black/90 mb-8">
-                        Artisanaura Handicraft is a multi-vendor platform showcasing a diverse collection of handcrafted items 
-                        from artisans around the world. We bring together talented creators to offer unique, high-quality products 
-                        that blend tradition with innovation. Our mission is to support local craftsmanship and provide a 
-                        marketplace where every piece tells a story.
-                    </p>
-                </div>
-            </div>
+
+    <!-- Main Container -->
+    <div class="max-w-[1200px] mx-auto py-12 px-4">
+        <!-- Title Section -->
+        <div class="text-center mb-12">
+            <span class="text-4xl font-bold text-gray-800">Our Products</span>
+            <p class="text-gray-600 mt-4 text-lg">Explore our collection of unique, handcrafted items.</p>
         </div>
 
-        <!-- Carousel Section -->
-        <div class="md:w-1/3 h-[600px] relative rounded-xl overflow-hidden">
-            <div class="carousel-wrapper">
-                <!-- Carousel Images Container -->
-                <div class="carousel-images">
-                    <img src="images/slide-1.avif" class="w-full h-full object-cover" />
-                    <img src="images/silde-2.jpg" class="w-full h-full object-cover" />
-                    <img src="images/slide-3.webp" class="w-full h-full object-cover" />
-                    <img src="images/slide-4.jpeg" class="w-full h-full object-cover" />
-                </div>
-
-                <!-- Left Arrow -->
-                <button id="prev" class="carousel-arrow carousel-arrow-left">&#10094;</button>
-
-                <!-- Right Arrow -->
-                <button id="next" class="carousel-arrow carousel-arrow-right">&#10095;</button>
-
-                <!-- Indicators -->
-                <div class="carousel-indicators">
-                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
-                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
-                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
+        <!-- Product Grid Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
+                <img src="images/lamp-3.webp" alt="Product 1" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Hanging Lamp</div>
+                    <p class="text-gray-600 mt-2">A beautiful handcrafted hanging lamp to add elegance to any space.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$45.99</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
                 </div>
             </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
+                <img src="images/lanterns-2.webp" alt="Product 2" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Decorative Lantern</div>
+                    <p class="text-gray-600 mt-2">Bring a cozy ambiance with this vintage-style lantern, perfect for any home.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$25.49</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="UTILITY">
+                <img src="images/trunk-1.webp" alt="Product 3" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Vintage Trunk Box</div>
+                    <p class="text-gray-600 mt-2">A beautifully crafted wooden trunk box that combines functionality with style.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$69.99</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Products... -->
         </div>
+        <!-- End of Product Grid Section -->
     </div>
+    <!-- End of Main Container -->
 
-    <!-- Mission Section -->
-    <div class="bg-[url('https://images.unsplash.com/photo-1621112904887-419379ce6824')] bg-cover bg-center p-8 rounded-xl">
-        <div class="max-w-4xl mx-auto text-center bg-black/40 p-8 rounded-xl backdrop-blur-sm">
-            <h2 class="text-4xl font-bold mb-8 text-white">Our Mission</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-white">
-                    <span class="material-symbols-outlined text-4xl mb-4">brush</span>
-                    <h3 class="text-xl font-semibold mb-2">Preserve Tradition</h3>
-                    <p class="text-sm">Keeping traditional crafting techniques alive through generations</p>
-                </div>
-                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-white">
-                    <span class="material-symbols-outlined text-4xl mb-4">diversity_3</span>
-                    <h3 class="text-xl font-semibold mb-2">Empower Artisans</h3>
-                    <p class="text-sm">Supporting local craftsmen and their communities</p>
-                </div>
-                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-white">
-                    <span class="material-symbols-outlined text-4xl mb-4">shopping_cart</span>
-                    <h3 class="text-xl font-semibold mb-2">Curated Marketplace</h3>
-                    <p class="text-sm">Offering an exclusive platform for one-of-a-kind artisanal products</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    <script>
+        // Function to filter products based on category
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-item');
 
-<script>
-    // Basic Carousel functionality
-    let currentIndex = 0;
-    const images = document.querySelectorAll('.carousel-images img');
-    const totalImages = images.length;
-
-    // Move to next image
-    document.getElementById('next').addEventListener('click', function () {
-        currentIndex = (currentIndex + 1) % totalImages;
-        updateCarousel();
-    });
-
-    // Move to previous image
-    document.getElementById('prev').addEventListener('click', function () {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-        updateCarousel();
-    });
-
-    // Update the carousel to show the current image
-    function updateCarousel() {
-        const offset = -currentIndex * 100;
-        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
-    }
-</script>
+            if (category === 'ALL') {
+                products.forEach(product => product.style.display = 'block');
+            } else {
+                products.forEach(product => {
+                    if (product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
 
 </body>
+
 </html>
