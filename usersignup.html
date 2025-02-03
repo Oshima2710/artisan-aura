@@ -1,198 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign Up Form</title>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  </head>
 
-<body class="bg-gray-50 font-sans">
-
+  <body class="bg-gray-50 font-sans">
     <div class="min-h-screen flex items-center justify-center">
-        <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-            <div class="text-center mb-8">
-                <h1 class="text-2xl font-bold flex items-center justify-center gap-2 mb-2">
-                    ArtisanAura
-                </h1>
-                <p class="text-gray-600">Create your account and start crafting</p>
-            </div>
-
-            <form class="space-y-6">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium mb-2">First Name</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                                person
-                            </span>
-                            <input
-                                type="text"
-                                placeholder="First name"
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium mb-2">Last Name</label>
-                        <div class="relative">
-                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                                person
-                            </span>
-                            <input
-                                type="text"
-                                placeholder="Last name"
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium mb-2">Email Address</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                            mail
-                        </span>
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium mb-2">Password</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                            lock
-                        </span>
-                        <input
-                            type="password"
-                            placeholder="Create a password"
-                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                        />
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium mb-2">Confirm Password</label>
-                    <div class="relative">
-                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                            lock
-                        </span>
-                        <input
-                            type="password"
-                            placeholder="Confirm your password"
-                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
-                        />
-                    </div>
-                </div>
-
-                <div class="flex items-center">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input
-                            type="checkbox"
-                            class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
-                        />
-                        <span class="text-sm">I agree to the Terms of Service and Privacy Policy</span>
-                    </label>
-                </div>
-
-                <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300">
-                    Sign Up
-                </button>
-            </form>
-
-            <div class="mt-6 text-center">
-                <p class="text-gray-600">
-                    Already have an account?
-                    <a href="userlogin.html" class="text-orange-500 hover:text-orange-600 transition-colors ml-1">
-                        Sign in
-                    </a>
-                </p>
-            </div>
-
-            <div class="mt-8">
-                <div class="relative">
-                    <div class="absolute inset-0 flex items-center">
-                        <div class="w-full border-t border-gray-300"></div>
-                    </div>
-                    <div class="relative flex justify-center text-sm">
-                        <span class="px-2 bg-white text-gray-500">Or continue with</span>
-                    </div>
-                </div>
-
-                <div class="mt-6 grid grid-cols-3 gap-3">
-                    <a
-                        href="https://your-website.com/auth/google"
-                        class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                        <i class="fa-brands fa-google text-red-500 text-xl"></i>
-                    </a>
-                    <a
-                        href="https://your-website.com/auth/facebook"
-                        class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                        <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
-                    </a>
-                    <a
-                        href="https://your-website.com/auth/apple"
-                        class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                        <i class="fa-brands fa-apple text-xl"></i>
-                    </a>
-                </div>
-            </div>
+      <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <div class="text-center mb-8">
+          <h1
+            class="text-2xl font-bold flex items-center justify-center gap-2 mb-2"
+          >
+            ArtisanAura
+          </h1>
+          <p class="text-gray-600">Create your account and start crafting</p>
         </div>
+
+        <form class="space-y-6">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-2">First Name</label>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                >
+                  person
+                </span>
+                <input
+                  type="text"
+                  placeholder="First name"
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                />
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-2">Last Name</label>
+              <div class="relative">
+                <span
+                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                >
+                  person
+                </span>
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Email Address</label>
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              >
+                mail
+              </span>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Password</label>
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              >
+                lock
+              </span>
+              <input
+                type="password"
+                placeholder="Create a password"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2"
+              >Confirm Password</label
+            >
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              >
+                lock
+              </span>
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
+              />
+              <span class="text-sm"
+                >I agree to the Terms of Service and Privacy Policy</span
+              >
+            </label>
+          </div>
+
+          <button
+            class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        <div class="mt-6 text-center">
+          <p class="text-gray-600">
+            Already have an account?
+            <a
+              href="userlogin.html"
+              class="text-orange-500 hover:text-orange-600 transition-colors ml-1"
+            >
+              Sign in
+            </a>
+          </p>
+        </div>
+
+        <div class="mt-8">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-gray-300"></div>
+            </div>
+            <div class="relative flex justify-center text-sm">
+              <span class="px-2 bg-white text-gray-500">Or continue with</span>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-3 gap-3">
+            <a
+              href="https://your-website.com/auth/google"
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <i class="fa-brands fa-google text-red-500 text-xl"></i>
+            </a>
+            <a
+              href="https://your-website.com/auth/facebook"
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+            </a>
+            <a
+              href="https://your-website.com/auth/apple"
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <i class="fa-brands fa-apple text-xl"></i>
+            </a>
+          </div>
+        </div>
+        <!-- Right Side: Image -->
+        <div
+          class="hidden lg:block w-1/2 h-full bg-cover bg-center rounded-r-xl"
+          style="background-image: url('images/bg-img.jpg')"
+        ></div>
+      </div>
     </div>
 
     <script>
-        // Check if user is already signed up (stored in localStorage)
-        function checkIfUserExists() {
-            const user = localStorage.getItem('user');
-            return user ? JSON.parse(user) : null;
-        }
+      // Check if user is already signed up (stored in localStorage)
+      function checkIfUserExists() {
+        const user = localStorage.getItem("user");
+        return user ? JSON.parse(user) : null;
+      }
 
-        // Handle the form submission
-        document.getElementById('signup-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
+      // Handle the form submission
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
 
-            // Get user inputs
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+          // Get user inputs
+          const firstName = document.getElementById("first-name").value;
+          const lastName = document.getElementById("last-name").value;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
 
-            // Validate passwords
-            if (password !== confirmPassword) {
-                alert("Passwords do not match");
-                return;
-            }
+          // Validate passwords
+          if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+          }
 
-            // Store user data in localStorage (for demonstration purposes)
-            const user = {
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                password: password
-            };
+          // Store user data in localStorage (for demonstration purposes)
+          const user = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+          };
 
-            // Save user data to localStorage
-            localStorage.setItem('user', JSON.stringify(user));
+          // Save user data to localStorage
+          localStorage.setItem("user", JSON.stringify(user));
 
-            alert("Sign up successful!");
+          alert("Sign up successful!");
 
-            // Clear form after submission
-            document.getElementById('signup-form').reset();
+          // Clear form after submission
+          document.getElementById("signup-form").reset();
         });
     </script>
-
-</body>
-
+  </body>
 </html>
