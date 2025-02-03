@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendors</title>
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.2/dist/tailwind.min.css"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js"></script> <!-- AlpineJS for interactivity -->
+</head>
+<body class="bg-gray-100">
+
+    <div class="w-full max-w-[1200px] mx-auto mt-16">
+        <h2 class="text-5xl font-bold mb-8 text-center text-gray-800">Our Vendors</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+            <!-- Vendor 1 -->
+            <div x-data="{ showProfile: false }" @click="showProfile = !showProfile" class="flex flex-col items-center cursor-pointer p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                <img src="images/v-1.jpeg" class="w-48 h-48 object-cover rounded-full mb-4" alt="Vendor 1" />
+                <p class="text-2xl font-semibold text-gray-800">Vendor 1</p>
+                <p class="text-base text-gray-600 mb-4">Crafting unique items with love.</p>
+
+                <!-- Vendor Profile (Hidden initially) -->
+                <div x-show="showProfile" x-transition class="mt-4 p-6 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
+                    <div class="flex">
+                        <!-- Vendor Image -->
+                        <div class="w-1/3">
+                            <img src="images/v-1.jpeg" class="w-full h-40 object-cover rounded-lg shadow-md" alt="Vendor Image" />
+                        </div>
+                        <!-- Vendor Details -->
+                        <div class="w-2/3 pl-4">
+                            <h3 class="text-3xl font-bold text-gray-800">Vendor 1</h3>
+                            <p class="text-lg text-gray-700 mb-4">Crafting unique items with love.</p>
+
+                            <p class="text-xl font-semibold text-gray-800 mb-4">Products:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Handmade Pottery</li>
+                                <li>Wooden Spoons</li>
+                                <li>Clay Mugs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vendor 2 -->
+            <div x-data="{ showProfile: false }" @click="showProfile = !showProfile" class="flex flex-col items-center cursor-pointer p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                <img src="images/v-2.jpeg" class="w-48 h-48 object-cover rounded-full mb-4" alt="Vendor 2" />
+                <p class="text-2xl font-semibold text-gray-800">Vendor 2</p>
+                <p class="text-base text-gray-600 mb-4">Handmade goods with a personal touch.</p>
+
+                <!-- Vendor Profile (Hidden initially) -->
+                <div x-show="showProfile" x-transition class="mt-4 p-6 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
+                    <div class="flex">
+                        <!-- Vendor Image -->
+                        <div class="w-1/3">
+                            <img src="images/v-2.jpeg" class="w-full h-40 object-cover rounded-lg shadow-md" alt="Vendor Image" />
+                        </div>
+                        <!-- Vendor Details -->
+                        <div class="w-2/3 pl-4">
+                            <h3 class="text-3xl font-bold text-gray-800">Vendor 2</h3>
+                            <p class="text-lg text-gray-700 mb-4">Handmade goods with a personal touch.</p>
+
+                            <p class="text-xl font-semibold text-gray-800 mb-4">Products:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Handmade Jewelry</li>
+                                <li>Decorative Candles</li>
+                                <li>Art Prints</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vendor 3 -->
+            <div x-data="{ showProfile: false }" @click="showProfile = !showProfile" class="flex flex-col items-center cursor-pointer p-6 bg-white rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl">
+                <img src="images/v-3.jpeg" class="w-48 h-48 object-cover rounded-full mb-4" alt="Vendor 3" />
+                <p class="text-2xl font-semibold text-gray-800">Vendor 3</p>
+                <p class="text-base text-gray-600 mb-4">Designs that speak volumes.</p>
+
+                <!-- Vendor Profile (Hidden initially) -->
+                <div x-show="showProfile" x-transition class="mt-4 p-6 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
+                    <div class="flex">
+                        <!-- Vendor Image -->
+                        <div class="w-1/3">
+                            <img src="images/v-3.jpeg" class="w-full h-40 object-cover rounded-lg shadow-md" alt="Vendor Image" />
+                        </div>
+                        <!-- Vendor Details -->
+                        <div class="w-2/3 pl-4">
+                            <h3 class="text-3xl font-bold text-gray-800">Vendor 3</h3>
+                            <p class="text-lg text-gray-700 mb-4">Designs that speak volumes.</p>
+
+                            <p class="text-xl font-semibold text-gray-800 mb-4">Products:</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Modern Wall Art</li>
+                                <li>Handcrafted Furniture</li>
+                                <li>Textile Products</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
