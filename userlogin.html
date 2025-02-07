@@ -84,15 +84,18 @@
             </div>
           </div>
 
-          <div class="mt-6 grid grid-cols-3 gap-3">
-            <a href="https://your-website.com/auth/google" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+          <div class="mt-6 grid grid-cols-3 gap-3 justify-center mx-auto max-w-md">
+            <!-- google button -->
+            <a href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email&state=YOUR_STATE_PARAM" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
               <i class="fa-brands fa-google text-red-500 text-xl"></i>
             </a>
-            <a href="https://your-website.com/auth/facebook" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
-            </a>
+            <!-- apple button -->
             <a href="https://your-website.com/auth/apple" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
               <i class="fa-brands fa-apple text-xl"></i>
+            </a>
+            <!-- Facebook Button -->
+            <a href="https://your-website.com/auth/facebook" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
             </a>
           </div>
         </div>

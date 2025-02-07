@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HandiCrafts Artisan Products - Multiple Vendors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for product card hover effect */
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- Fullscreen container with content -->
+    <div class="min-h-screen flex flex-col">
+
+        <!-- Fullscreen Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
+        
+        <!-- Category Section -->
+        <div class="px-6 py-4" id="category-section">
+            <div class="flex items-center justify-center">
+                <!-- Category List -->
+                <div class="flex items-center gap-8  font-semibold">
+                    <!-- Category 1 (UTILITY) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            UTILITY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block ">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">BASKETS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">TRUNK BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 2 (LIGHTINGS) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            LIGHTINGS
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 3 (ACCESSORIES) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            ACCESSORIES
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 4 (POTTERY) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            POTTERY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">PLANTERS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">VASES</a>
+
+                        </div>
+                    </div>
+        
+                    <!-- Category 5 (WOODEN CRAFT) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN CRAFT
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 1</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 2</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 3</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 6 (WALL DECOR) -->
+                    <div class="relative group">
+                        <a href="wall.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WALL DECOR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+    </nav>
+
+        <!-- Featured Products Section -->
+        <main class="flex-grow py-8 px-6">
+            <h2 class="text-3xl font-semibold mb-6 text-center">Featured Products</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mx-auto max-w-screen-xl">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-1.webp" alt="Product 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Handcrafted Vase</h3>
+                        <p class="text-gray-600 mt-2">A stunning piece of art made from high-quality pottery, designed to complement any home decor.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$39.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-2.webp" alt="Product 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Handwoven Textile Throw</h3>
+                        <p class="text-gray-600 mt-2">This handwoven textile throw is perfect for adding comfort and style to your living space.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$59.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-3.webp" alt="Product 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Wooden Sculpture</h3>
+                        <p class="text-gray-600 mt-2">A handcrafted wooden sculpture that embodies art and craftsmanship in every curve.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$89.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-4.webp" alt="Product 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Wooden Sculpture</h3>
+                        <p class="text-gray-600 mt-2">A handcrafted wooden sculpture that embodies art and craftsmanship in every curve.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$89.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-5.webp" alt="Product 5" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Wooden Sculpture</h3>
+                        <p class="text-gray-600 mt-2">A handcrafted wooden sculpture that embodies art and craftsmanship in every curve.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$89.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-6.webp" alt="Product 6" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Wooden Sculpture</h3>
+                        <p class="text-gray-600 mt-2">A handcrafted wooden sculpture that embodies art and craftsmanship in every curve.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$89.99</p>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300">
+                    <img src="images/wall-7.webp" alt="Product 7" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">Wooden Sculpture</h3>
+                        <p class="text-gray-600 mt-2">A handcrafted wooden sculpture that embodies art and craftsmanship in every curve.</p>
+                        <p class="text-lg font-bold mt-4 text-gray-900">$89.99</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="bg-blue-800 text-white text-center py-4">
+            <p class="text-lg">&copy; 2025 HandiCrafts. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

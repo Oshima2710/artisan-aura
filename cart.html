@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-6 md:p-12">
+        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300">
+            <h1 class="text-3xl font-bold text-gray-800 text-center mb-6">Your Cart</h1>
+
+            <div id="cartItems" class="space-y-6">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="index.html" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700">
+                    Continue Shopping
+                </a>
+                <a href="checkout.html" id="checkoutButton" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">
+                    Proceed to Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            renderCart();
+        });
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cartItems');
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p class="text-center text-gray-600">Your cart is empty.</p>';
+                return;
+            }
+
+            cartContainer.innerHTML = ''; // Clear previous content
+            cartItems.forEach((item, index) => {
+                item.quantity = item.quantity || 1; // Ensure quantity exists
+
+                cartContainer.innerHTML += `
+                    <div class="flex items-center gap-6 p-4 border border-gray-300 rounded-lg bg-gray-50" data-index="${index}">
+                        <img src="${item.image}" alt="${item.name}" class="w-24 h-24 rounded-lg">
+                        <div class="flex-1">
+                            <h2 class="text-xl font-semibold">${item.name}</h2>
+                            <p class="text-gray-600">${item.description}</p>
+                            <p class="text-gray-800 font-bold">Rs ${item.price}</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <button class="text-xl text-gray-600 hover:text-gray-800 p-2 bg-gray-200 rounded-full" onclick="updateQuantity(${index}, -1)">-</button>
+                            <span class="text-lg text-gray-800 font-semibold" id="quantity-${index}">${item.quantity}</span>
+                            <button class="text-xl text-gray-600 hover:text-gray-800 p-2 bg-gray-200 rounded-full" onclick="updateQuantity(${index}, 1)">+</button>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-red-600 text-lg hover:text-red-800">Remove</button>
+                    </div>
+                `;
+            });
+        }
+
+        function updateQuantity(index, change) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            if (!cartItems[index]) return; // Prevent errors
+
+            if (change === 1) {
+                cartItems[index].quantity += 1; // Increase quantity
+            } else if (change === -1) {
+                cartItems[index].quantity -= 1; // Decrease quantity
+                if (cartItems[index].quantity <= 0) {
+                    cartItems.splice(index, 1); // Remove if quantity reaches 0
+                }
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            renderCart(); // Re-render cart after update
+        }
+
+        function removeItem(index) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            renderCart(); // Re-render cart after removing item
+        }
+    </script>
+</body>
+</html>

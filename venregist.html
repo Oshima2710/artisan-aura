@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vendor Registration</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+      .drop-zone {
+        border: 2px dashed #3498db;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .drop-zone:hover {
+        background-color: #f0f9ff;
+      }
+      .drop-zone img {
+        max-width: 100%;
+        max-height: 100px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="min-h-screen flex items-center justify-center">
+      <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+        <div class="text-center mb-8">
+          <h1
+            class="text-2xl font-bold flex items-center justify-center gap-2 mb-2"
+          >
+            Vendor Registration
+          </h1>
+          <p class="text-gray-600">Register your business with us</p>
+        </div>
+
+        <!-- Personal Details Form -->
+        <div id="personalDetailsForm">
+          <details open class="mb-6">
+            <summary
+              class="text-lg font-semibold mb-4 cursor-pointer list-none"
+            >
+              Personal Details
+            </summary>
+            <form id="personalForm" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Vendor Name</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    person
+                  </span>
+                  <input
+                    id="vendorName"
+                    type="text"
+                    placeholder="Enter your full name"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Email Address</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    mail
+                  </span>
+                  <input
+                    id="emailAddress"
+                    type="email"
+                    placeholder="Enter your email"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2">Password</label>
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    lock
+                  </span>
+                  <input
+                    id="password"
+                    type="password"
+                    placeholder="Enter password"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Confirm Password</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    lock_reset
+                  </span>
+                  <input
+                    id="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Mobile Number</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    phone
+                  </span>
+                  <input
+                    id="mobileNumber"
+                    type="tel"
+                    placeholder="Enter mobile number"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+            </form>
+          </details>
+
+          <button
+            id="nextButton"
+            class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            <span class="material-symbols-outlined">arrow_forward</span>
+            Next
+          </button>
+        </div>
+
+        <!-- Business Details Form -->
+        <div id="businessDetailsForm" style="display: none">
+          <details open class="mb-6">
+            <summary
+              class="text-lg font-semibold mb-4 cursor-pointer list-none"
+            >
+              Business Details
+            </summary>
+            <form id="businessForm" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Business Name</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    business
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Enter business name"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Business Category</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    category
+                  </span>
+                  <select
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400 appearance-none cursor-pointer"
+                    name="category" id="category"
+                
+                  >
+                    <option value="">Select category</option>
+                    <option value="retail">Retail</option>
+                    <option value="wholesale">Wholesale</option>
+                    <option value="manufacturing">Manufacturing</option>
+                    <option value="services">Services</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Shop Address</label
+                >
+                <div class="relative group">
+                  <input name="shopAddress" id="shopAddress" type="text"
+                    placeholder="Enter shop address"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400 h-24"
+                  ></input>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2">GST Number</label>
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    receipt_long
+                  </span>
+                  <input name="gstNumber" id="gstNumber"
+                    type="text"
+                    placeholder="Enter GST number"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium mb-2"
+                    >Aadhar Card</label
+                  >
+                  <div class="drop-zone" id="aadharDropZone">
+                    <p class="text-gray-500">
+                      Drag & Drop Aadhar Card Image or Click to Upload
+                    </p>
+                    <input 
+                      type="file"
+                      name="aadharImage"
+                      id="aadharImage"
+                      accept="image/*"
+                      class="hidden"
+                    />
+                  </div>
+                  <div id="aadharImagePreview"></div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2">PAN Card</label>
+                  <div class="drop-zone" id="panDropZone">
+                    <p class="text-gray-500">
+                      Drag & Drop PAN Card Image or Click to Upload
+                    </p>
+                    <input
+                      type="file"
+                      id="panImage"
+                      accept="image/*"
+                      class="hidden"
+                    />
+                  </div>
+                  <div id="panImagePreview"></div>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium mb-2"
+                  >Business Email</label
+                >
+                <div class="relative group">
+                  <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"
+                  >
+                    alternate_email
+                  </span>
+                  <input
+                    type="email"
+                    placeholder="Enter business email"
+                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all hover:border-blue-400"
+                  />
+                </div>
+              </div>
+            </form>
+          </details>
+
+          <button
+            id="backButton"
+            class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg transform hover:-translate-y-0.5"
+          >
+            <span class="material-symbols-outlined">arrow_back</span>
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Function to load saved form data from localStorage
+      function loadFormData() {
+        const personalData = JSON.parse(localStorage.getItem("personalData"));
+        if (personalData) {
+          document.getElementById("vendorName").value =
+            personalData.vendorName || "";
+          document.getElementById("emailAddress").value =
+            personalData.email || "";
+          document.getElementById("password").value =
+            personalData.password || "";
+          document.getElementById("confirmPassword").value =
+            personalData.confirmPassword || "";
+          document.getElementById("mobileNumber").value =
+            personalData.mobileNumber || "";
+        }
+
+        const businessData = JSON.parse(localStorage.getItem("businessData"));
+        if (businessData) {
+          // Load business data if present (you can pre-populate business form here)
+        }
+      }
+
+      // Function to save personal details to localStorage
+      function savePersonalDetails() {
+        const personalData = {
+          vendorName: document.getElementById("vendorName").value,
+          email: document.getElementById("emailAddress").value,
+          password: document.getElementById("password").value,
+          confirmPassword: document.getElementById("confirmPassword").value,
+          mobileNumber: document.getElementById("mobileNumber").value,
+        };
+        localStorage.setItem("personalData", JSON.stringify(personalData));
+      }
+
+      // Show the business details form and hide the personal details form
+      function showBusinessForm() {
+        document.getElementById("personalDetailsForm").style.display = "none";
+        document.getElementById("businessDetailsForm").style.display = "block";
+      }
+
+      // Show the personal details form and hide the business details form
+      function showPersonalForm() {
+        document.getElementById("businessDetailsForm").style.display = "none";
+        document.getElementById("personalDetailsForm").style.display = "block";
+      }
+
+      // Event listener for the "Next" button
+      document
+        .getElementById("nextButton")
+        .addEventListener("click", function () {
+          savePersonalDetails(); // Save data to localStorage
+          showBusinessForm(); // Switch to the business details form
+        });
+
+      // Event listener for the "Back" button
+      document
+        .getElementById("backButton")
+        .addEventListener("click", function () {
+          showPersonalForm(); // Switch back to the personal details form
+        });
+
+      // Handling image uploads
+      document
+        .getElementById("aadharDropZone")
+        .addEventListener("click", function () {
+          document.getElementById("aadharImage").click();
+        });
+
+      document
+        .getElementById("aadharImage")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              document.getElementById("aadharImagePreview").innerHTML =
+                '<img src="' + event.target.result + '" alt="Aadhar Card" />';
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+      document
+        .getElementById("panDropZone")
+        .addEventListener("click", function () {
+          document.getElementById("panImage").click();
+        });
+
+      document
+        .getElementById("panImage")
+        .addEventListener("change", function (e) {
+          const file = e.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+              document.getElementById("panImagePreview").innerHTML =
+                '<img src="' + event.target.result + '" alt="PAN Card" />';
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+
+      window.onload = loadFormData;
+    </script>
+  </body>
+</html>

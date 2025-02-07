@@ -16,29 +16,26 @@
   </head>
 
   <body class="bg-gray-50 font-sans">
-    <div class="min-h-screen flex items-center justify-center">
+    <div class="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16">
       <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <div class="text-center mb-8">
-          <h1
-            class="text-2xl font-bold flex items-center justify-center gap-2 mb-2"
-          >
+          <h1 class="text-2xl font-bold flex items-center justify-center gap-2 mb-2">
             ArtisanAura
           </h1>
           <p class="text-gray-600">Create your account and start crafting</p>
         </div>
 
-        <form class="space-y-6">
-          <div class="grid grid-cols-2 gap-4">
+        <form class="space-y-6" id="signup-form">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-sm font-medium mb-2">First Name</label>
               <div class="relative">
-                <span
-                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                >
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   person
                 </span>
                 <input
                   type="text"
+                  id="first-name"
                   placeholder="First name"
                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                 />
@@ -47,13 +44,12 @@
             <div>
               <label class="block text-sm font-medium mb-2">Last Name</label>
               <div class="relative">
-                <span
-                  class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-                >
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                   person
                 </span>
                 <input
                   type="text"
+                  id="last-name"
                   placeholder="Last name"
                   class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
                 />
@@ -64,13 +60,12 @@
           <div>
             <label class="block text-sm font-medium mb-2">Email Address</label>
             <div class="relative">
-              <span
-                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              >
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                 mail
               </span>
               <input
                 type="email"
+                id="email"
                 placeholder="Enter your email"
                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
               />
@@ -80,13 +75,12 @@
           <div>
             <label class="block text-sm font-medium mb-2">Password</label>
             <div class="relative">
-              <span
-                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              >
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                 lock
               </span>
               <input
                 type="password"
+                id="password"
                 placeholder="Create a password"
                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
               />
@@ -94,17 +88,14 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium mb-2"
-              >Confirm Password</label
-            >
+            <label class="block text-sm font-medium mb-2">Confirm Password</label>
             <div class="relative">
-              <span
-                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-              >
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
                 lock
               </span>
               <input
                 type="password"
+                id="confirm-password"
                 placeholder="Confirm your password"
                 class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
               />
@@ -117,13 +108,12 @@
                 type="checkbox"
                 class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500"
               />
-              <span class="text-sm"
-                >I agree to the Terms of Service and Privacy Policy</span
-              >
+              <span class="text-sm">I agree to the Terms of Service and Privacy Policy</span>
             </label>
           </div>
 
           <button
+            type="submit"
             class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300"
           >
             Sign Up
@@ -153,31 +143,26 @@
           </div>
 
           <div class="mt-6 grid grid-cols-3 gap-3">
+            <!--google button  -->
             <a
-              href="https://your-website.com/auth/google"
+              href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email&state=YOUR_STATE_PARAM"
               class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <i class="fa-brands fa-google text-red-500 text-xl"></i>
             </a>
-            <a
-              href="https://your-website.com/auth/facebook"
-              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
-            </a>
+            <!-- apple button -->
             <a
               href="https://your-website.com/auth/apple"
               class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <i class="fa-brands fa-apple text-xl"></i>
             </a>
+            <!-- Facebook Button -->
+            <a href="https://your-website.com/auth/facebook" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+              <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+            </a>
           </div>
         </div>
-        <!-- Right Side: Image -->
-        <div
-          class="hidden lg:block w-1/2 h-full bg-cover bg-center rounded-r-xl"
-          style="background-image: url('images/bg-img.jpg')"
-        ></div>
       </div>
     </div>
 

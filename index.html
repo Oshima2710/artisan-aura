@@ -3,86 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArtisanAura</title>
+    <title>Artisan</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Carousel Container */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%; /* Full width of the container */
+            height: 100%; /* Full height of the container */
+            overflow: hidden; /* Prevent images from overflowing */
+        }
+
+        /* Ensuring equal height and width for all images in the carousel */
+        .carousel-images {
+            display: flex;
+            transition: transform 1s ease;
+            width: 100%; /* Make sure it spans the full width */
+            height: 100%; /* Ensure the container height is used */
+        }
+
+        .carousel-images img {
+            width: 100%; /* Image fills width */
+            height: 100%; /* Image fills height */
+            object-fit: cover; /* Ensures the image covers the container */
+        }
+
+        /* Arrow Buttons */
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .carousel-arrow-left {
+            left: 10px;
+        }
+
+        .carousel-arrow-right {
+            right: 10px;
+        }
+
+        /* Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+        }
+
+        .carousel-indicators button.active {
+            background-color: white;
+        }
+ 
+    </style>
 </head>
 <body class="font-sans bg-gray-100">
 
-<div class="w-full max-w-[1200px] mx-auto">
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-300 hover:bg-white">
-        <div class="px-6 py-4">
-            <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold flex items-center gap-2">
-                    <span class="material-symbols-outlined">palette</span>
-                    ArtisanAura
-                </h1>
-                <div class="flex items-center gap-8">
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> <span class="material-symbols-outlined">home</span> Home </a>
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> <span class="material-symbols-outlined">info</span> About </a>
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> <span class="material-symbols-outlined">gallery_thumbnail</span> Gallery </a>
-                    <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> <span class="material-symbols-outlined">mail</span> Contact </a>
-                </div>
+<div class="w-full max-w-full mx-auto">
+    <!-- Fullscreen Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
+        <!-- Navbar Content (Top Section) -->
+        <div class="px-6 py-4 flex items-center justify-between transition-all duration-300" id="navbar-top">
+            <!-- Logo and Links -->
+            <h1 class="text-2xl font-bold flex items-center gap-2 transition-all duration-300" id="navbar-logo">
+                ArtisanAura
+            </h1>
+            <div class="flex items-center gap-8  font-semibold" id="navbar-links">
+                <!-- Login Link -->
+                <a href="userlogin.html" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
+                    <span class="material-symbols-outlined">login</span> Login 
+                </a>
+                <!-- Cart Link -->
+                <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1"> 
+                    <span class="material-symbols-outlined">shopping_cart</span> Cart 
+                </a>
             </div>
         </div>
-    </nav>
+        
+        <!-- Category Section -->
+        <div class="px-6 py-4" id="category-section">
+            <div class="flex items-center justify-center">
+                <!-- Category List -->
+                <div class="flex items-center gap-8  font-semibold">
+                    <!-- Category 1 (UTILITY) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            UTILITY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block ">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">BASKETS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">TRUNK BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 2 (LIGHTINGS) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            LIGHTINGS
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 3 (ACCESSORIES) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            ACCESSORIES
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 4 (POTTERY) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            POTTERY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">PLANTERS</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">VASES</a>
 
-    <div class="flex flex-col md:flex-row gap-4 my-8">
-        <div class="md:w-1/2 h-[600px] relative rounded-xl overflow-hidden">
-            <div class="absolute inset-0 bg-[url('images/bg-img.jpg')] bg-cover bg-center">
-                <div class="h-full flex items-center justify-center bg-black/40 backdrop-blur-sm px-8">
-                    <div class="max-w-xl">
-                        <h2 class="text-5xl font-bold mb-6 text-white">About Us</h2>
-                        <p class="text-xl leading-relaxed text-white/90 mb-8">
-                            Artisanaura Handicraft is a multi-vendor platform showcasing a diverse collection of handcrafted items 
-                            from artisans around the world. We bring together talented creators to offer unique, high-quality products 
-                            that blend tradition with innovation. Our mission is to support local craftsmanship and provide a 
-                            marketplace where every piece tells a story.
-                        </p>
-                        <button class="bg-amber-600 hover:bg-amber-700 px-8 py-3 rounded-full transform hover:-translate-y-1 transition-all duration-300 text-white flex items-center gap-2">
-                            <span class="material-symbols-outlined">arrow_forward</span>
-                            Learn More
-                        </button>
+                        </div>
+                    </div>
+        
+                    <!-- Category 5 (WOODEN CRAFT) -->
+                    <div class="relative group">
+                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN CRAFT
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 1</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 2</a>
+                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 3</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 6 (WALL DECOR) -->
+                    <div class="relative group">
+                        <a href="wall.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WALL DECOR
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+         
+    </nav>
+        
+    <div class="flex flex-col md:flex-row gap-4 my-8">
+        <!-- About Us Section (Taking full left screen) -->
+        <div class="md:w-2/3 h-[600px] relative rounded-none overflow-hidden  bg-cover bg-center">
+            <!-- Peach-colored background box -->
+            <div class="absolute inset-0 bg-[#94d2bd] bg-opacity-80 p-8 rounded-none flex items-center justify-center">
+                <div class="max-w-xl">
+                    <h2 class="text-5xl font-bold mb-6 text-black">ArtisanAura: Crafting a Vibrant Online Marketplace</h2>
+                    <p class="text-xl leading-relaxed text-black/90 mb-8">
+                        Artisanaura Handicraft is a multi-vendor platform showcasing a diverse collection of handcrafted items 
+                        from artisans around the world. We bring together talented creators to offer unique, high-quality products 
+                        that blend tradition with innovation. Our mission is to support local craftsmanship and provide a 
+                        marketplace where every piece tells a story.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
 
-        <div class="md:w-1/2 h-[600px] relative rounded-xl overflow-hidden">
-            <!-- Carousel Wrapper -->
-            <div class="absolute inset-0 overflow-hidden">
-                <!-- Images Container -->
-                <div class="carousel-images flex transition-transform duration-1000">
+        <!-- Carousel Section (Reduced width) -->
+        <div class="md:w-1/3 h-[600px] relative rounded-none overflow-hidden">
+            <div class="carousel-wrapper">
+                <!-- Carousel Images Container -->
+                <div class="carousel-images">
                     <img src="images/slide-1.avif" class="w-full h-full object-cover" />
                     <img src="images/silde-2.jpg" class="w-full h-full object-cover" />
                     <img src="images/slide-3.webp" class="w-full h-full object-cover" />
                     <img src="images/slide-4.jpeg" class="w-full h-full object-cover" />
                 </div>
-            </div>
-        
-            <!-- Left Arrow -->
-            <button id="prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white bg-black/50 p-2 rounded-full">
-                &#10094;
-            </button>
-        
-            <!-- Right Arrow -->
-            <button id="next" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white bg-black/50 p-2 rounded-full">
-                &#10095;
-            </button>
-        
-            <!-- Indicators -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
-                <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
-                <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
+
+                <!-- Left Arrow -->
+                <button id="prev" class="carousel-arrow carousel-arrow-left">&#10094;</button>
+
+                <!-- Right Arrow -->
+                <button id="next" class="carousel-arrow carousel-arrow-right">&#10095;</button>
+
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
+                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
+                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-colors"></button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="bg-[url('https://images.unsplash.com/photo-1621112904887-419379ce6824')] bg-cover bg-center p-8 rounded-xl">
-        <div class="max-w-4xl mx-auto text-center bg-black/40 p-8 rounded-xl backdrop-blur-sm">
+    <!-- Mission Section -->
+    <div class="bg-[url('images/bg-img.jpg')] bg-cover bg-center p-8 rounded-none">
+        <div class="max-w-4xl mx-auto text-center bg-black/40 p-8 rounded-none backdrop-blur-sm">
             <h2 class="text-4xl font-bold mb-8 text-white">Our Mission</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-white">
@@ -104,8 +254,271 @@
         </div>
     </div>
 </div>
+    <!-- Vendor Section -->
+    <div class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold mb-6 text-center">Our Vendors</h2>
+        <div class="grid grid-cols-3 gap-6 mb-12">
+            <!-- Vendor 1 -->
+            <a href="vendor1.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-1.jpeg"
+                            alt="Vendor 1"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Craftsy</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>New Delhi, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>4.8/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Vendor 2 -->
+            <a href="vendor2.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-2.jpeg"
+                            alt="Vendor 2"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Artistry</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>Jaipur, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>4.7/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Vendor 3 -->
+            <a href="vendor3.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-3.jpg"
+                            alt="Vendor 3"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Loomsy</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>Uttar Pradesh, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>5.0/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors  ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Vendor 4 -->
+            <a href="vendor4.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-4.jpg"
+                            alt="Vendor 3"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Craftsy</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>Udaipur, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>5.0/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Vendor 5 -->
+            <a href="vendor5.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-5.jpeg"
+                            alt="Vendor 3"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Artique</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>Pune, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>5.0/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Vendor 6 -->
+            <a href="vendor6.html" class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex p-6">
+                    <div class="flex-shrink-0">
+                        <img
+                            src="images/v-6.jpeg"
+                            alt="Vendor 3"
+                            class="w-32 h-32 rounded-full object-cover border-4 border-blue-100 hover:border-blue-200 transition-all duration-300"
+                        />
+                    </div>
+                    <div class="ml-6 flex-grow">
+                        <span class="text-xl font-bold mb-2">Wovella</span>
+                        <p class="text-gray-600 mb-4">Traditional craftsmen creating unique handmade pieces</p>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">location_on</span>
+                                <span>Ahmedabad, India</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500">star</span>
+                                <span>5.0/5</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <button class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors ml-auto">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+    <!-- Footer Section -->
+    <footer class="bg-black text-white py-12 mt-3">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+                <!-- ArtisanAura Info Section -->
+                <div class="space-y-4">
+                    <p class="text-3xl font-semibold">ArtisanAura</p>
+                    <!-- <p class="text-sm">Crafting excellence with passion and precision since 1995.</p> -->
+                    <div class="flex gap-6 mt-1">
+                        <!-- Social Media Icons -->
+                        <a href="#" class="text-white hover:text-gray-200 transition-all">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-200 transition-all">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-200 transition-all">
+                            <i class="fab fa-pinterest text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-200 transition-all">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- About Us Section -->
+                <div class="space-y-4">
+                    <p class="font-semibold text-lg">About Us</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Our Story</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Team</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Careers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Orders Section -->
+                <div class="space-y-4">
+                    <p class="font-semibold text-lg">Orders</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-gray-200 transition-all">How to Order</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Shipping</a></li>
+                        <li><a href="venregist.html" class="hover:text-gray-200 transition-all">Become a Seller</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div class="space-y-4">
+                    <p class="font-semibold text-lg">Support</p>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Help Center</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-all">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-all">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Section -->
+            <div class="border-t border-gray-600 pt-8 mt-12 text-center">
+                <p class="text-sm text-gray-200">© 2024 ArtisanAura. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>  
 
 <script>
+// carousel start
     const carouselImages = document.querySelector('.carousel-images');
     const prevBtn = document.getElementById('prev');
     const nextBtn = document.getElementById('next');

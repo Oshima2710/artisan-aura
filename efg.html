@@ -4,203 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Shopping Cart</title>
+
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-        /* Navbar */
-        #navbar-top {
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
 
-        #navbar-logo,
-        #navbar-links {
-            transition: opacity 0.3s ease;
-        }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 
-        #navbar.shrunk #navbar-top {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        #navbar.shrunk #category-section {
-            padding-top: 16px;
-        }
-
-        #navbar .expanded #navbar-top {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        #navbar .expanded #category-section {
-            padding-top: 40px;
-        }
-    </style>
 </head>
 
 <body class="bg-gray-100">
-    <!-- Fullscreen Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
-        <!-- Category Section -->
-        <div class="px-6 py-4" id="category-section">
-            <div class="flex items-center justify-center">
-                <div class="flex items-center gap-8">
-                    <!-- Category 1 (UTILITY) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('UTILITY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            UTILITY
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">BASKETS</a>
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">TRUNK BOXES</a>
-                        </div>
-                    </div>
 
-                    <!-- Category 2 (LIGHTINGS) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('LIGHTINGS')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            LIGHTINGS
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
-                        </div>
-                    </div>
+    <!-- Main Content -->
+    <div id="webcrumbs" class="p-8 flex justify-center">
+        <div class="w-[1200px] bg-white rounded-lg shadow-lg p-8">
 
-                    <!-- Category 3 (HOME DECOR) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('HOME_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            HOME DECOR
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
-                        </div>
-                    </div>
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <h1 class="text-3xl font-bold">Shopping Cart</h1>
+                <div class="relative">
+                    <span class="material-symbols-outlined text-3xl cursor-pointer hover:scale-110 transition-transform">
+                        shopping_cart
+                    </span>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                        0
+                    </span>
+                </div>
+            </div>
 
-                    <!-- Category 4 (POTTERY) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('POTTERY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            POTTERY
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">PLANTERS</a>
-                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">VASES</a>
-                        </div>
-                    </div>
+            <!-- Cart Items -->
+            <div class="space-y-6" id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
 
-                    <!-- Category 5 (WOODEN CRAFT) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            WOODEN CRAFT
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 1</a>
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 2</a>
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 3</a>
-                        </div>
+            <!-- Product List -->
+            <div class="space-y-6 mt-8">
+                <!-- First Product -->
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-shadow">
+                    <img src="https://webcrumbs.cloud/placeholder" alt="Product" class="w-24 h-24 object-cover rounded-lg" />
+                    <div class="flex-1 ml-6">
+                        <h2 class="text-xl font-semibold">Product Name</h2>
+                        <p class="text-gray-600">Description of the product</p>
                     </div>
-
-                    <!-- Category 6 (WALL DECOR) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('WALL_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            WALL DECOR
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 1</a>
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 2</a>
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 3</a>
-                        </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xl font-bold">$99.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg" onclick="addToCart('Product Name', 99.99)">
+                            Add to Cart
+                        </button>
                     </div>
                 </div>
+
+                <!-- Second Product -->
+                <div class="flex items-center justify-between p-4 border rounded-lg hover:shadow-md transition-shadow">
+                    <img src="https://webcrumbs.cloud/placeholder" alt="Product" class="w-24 h-24 object-cover rounded-lg" />
+                    <div class="flex-1 ml-6">
+                        <h2 class="text-xl font-semibold">Another Product</h2>
+                        <p class="text-gray-600">Description of another product</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-xl font-bold">$149.99</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg" onclick="addToCart('Another Product', 149.99)">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkout Section -->
+            <div class="mt-8 flex justify-between items-center p-6 bg-gray-50 rounded-lg">
+                <div>
+                    <p class="text-lg">Subtotal: <span id="subtotal" class="font-bold">$0.00</span></p>
+                    <p class="text-sm text-gray-500">Shipping and taxes calculated at checkout</p>
+                </div>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transform hover:scale-105 transition-all">
+                    Checkout
+                </button>
             </div>
         </div>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="max-w-[1200px] mx-auto py-12 px-4">
-        <!-- Title Section -->
-        <div class="text-center mb-12">
-            <span class="text-4xl font-bold text-gray-800">Our Products</span>
-            <p class="text-gray-600 mt-4 text-lg">Explore our collection of unique, handcrafted items.</p>
-        </div>
-
-        <!-- Product Grid Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
-            <!-- Product 1 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
-                <img src="images/lamp-3.webp" alt="Product 1" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Hanging Lamp</div>
-                    <p class="text-gray-600 mt-2">A beautiful handcrafted hanging lamp to add elegance to any space.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$45.99</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 2 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
-                <img src="images/lanterns-2.webp" alt="Product 2" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Decorative Lantern</div>
-                    <p class="text-gray-600 mt-2">Bring a cozy ambiance with this vintage-style lantern, perfect for any home.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$25.49</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="UTILITY">
-                <img src="images/trunk-1.webp" alt="Product 3" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Vintage Trunk Box</div>
-                    <p class="text-gray-600 mt-2">A beautifully crafted wooden trunk box that combines functionality with style.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$69.99</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- More Products... -->
-        </div>
-        <!-- End of Product Grid Section -->
     </div>
-    <!-- End of Main Container -->
-
     <script>
-        // Function to filter products based on category
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-item');
+        // Initialize cart items
+        let cartItems = [];
+        let cartCount = 0;
 
-            if (category === 'ALL') {
-                products.forEach(product => product.style.display = 'block');
+        // Function to add product to cart
+        function addToCart(productName, productPrice) {
+            // Check if product already exists in cart
+            const existingProduct = cartItems.find(item => item.name === productName);
+            if (existingProduct) {
+                existingProduct.quantity += 1;
             } else {
-                products.forEach(product => {
-                    if (product.getAttribute('data-category') === category) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
+                cartItems.push({
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
                 });
             }
+            cartCount += 1;
+            updateCartDisplay();
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            // Update the cart count
+            document.getElementById("cart-count").textContent = cartCount;
+
+            // Update cart items in the cart area
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = ""; // Clear current items
+
+            let subtotal = 0;
+
+            // Add cart items
+            cartItems.forEach(item => {
+                subtotal += item.price * item.quantity;
+                const itemElement = document.createElement("div");
+                itemElement.classList.add("flex", "items-center", "justify-between", "p-4", "border", "rounded-lg", "hover:shadow-md", "transition-shadow");
+
+                itemElement.innerHTML = `
+                    <div class="flex-1 ml-6">
+                        <h2 class="text-xl font-semibold">${item.name}</h2>
+                        <p class="text-gray-600">Description of ${item.name}</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <button class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center" onclick="updateQuantity('${item.name}', -1)">-</button>
+                            <span class="text-lg font-medium">${item.quantity}</span>
+                            <button class="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center" onclick="updateQuantity('${item.name}', 1)">+</button>
+                        </div>
+                        <span class="text-xl font-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <button class="text-red-500 hover:text-red-600 transition-colors" onclick="removeItem('${item.name}')">
+                            <span class="material-symbols-outlined">delete</span>
+                        </button>
+                    </div>
+                `;
+
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            // Update subtotal
+            document.getElementById("subtotal").textContent = "$" + subtotal.toFixed(2);
+        }
+
+        // Function to update item quantity
+        function updateQuantity(productName, change) {
+            const item = cartItems.find(item => item.name === productName);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change);
+            }
+            updateCartDisplay();
+        }
+
+        // Function to remove item from cart
+        function removeItem(productName) {
+            cartItems = cartItems.filter(item => item.name !== productName);
+            cartCount -= 1;
+            updateCartDisplay();
         }
     </script>
-
 </body>
 
 </html>
