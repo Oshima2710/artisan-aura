@@ -35,15 +35,6 @@
                         <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
                             <span class="material-symbols-outlined">arrow_downward</span> Price: High to Low
                         </li>
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
-                            <span class="material-symbols-outlined">star</span> Best Rating
-                        </li>
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
-                            <span class="material-symbols-outlined">schedule</span> Newest First
-                        </li>
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
-                            <span class="material-symbols-outlined">local_offer</span> Best Selling
-                        </li>
                     </ul>
                 </div>
                 <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
@@ -62,7 +53,7 @@
                 <div class="flex items-center gap-8  font-semibold">
                     <!-- Category 1 (UTILITY) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="utility.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             UTILITY
                         </a>
                         <!-- Dropdown Menu -->
@@ -159,7 +150,7 @@
                             </a>
                           
                             <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
+                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457', 'A criss-cross basket is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.')"> 
                                 <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
                                     favorite
                                 </span>  
@@ -182,7 +173,7 @@
                                 </span>
                             </a>
                             <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Diamond Wire Basket - Gold', 'images/bask-2.webp', 'Rs 2,457')"> 
+                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Diamond Wire Basket - Gold', 'images/bask-2.webp', 'Rs 2,457', 'It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.')"> 
                                 <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
                                     favorite
                                 </span>  
@@ -205,7 +196,7 @@
                                 </span>
                             </a>
                             <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Classic Steel wire basket', 'images/bask-3.webp', 'Rs 2,457')"> 
+                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Classic Steel wire basket', 'images/bask-3.webp', 'Rs 1,670', 'It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.')"> 
                                 <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
                                     favorite
                                 </span>  
@@ -229,7 +220,7 @@
                             </a>
                             
                             <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
+                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Wooden Cutlery Holder', 'images/stand-1.jpg', 'Rs 3,813', 'The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.')"> 
                                 <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
                                     favorite
                                 </span>  
@@ -252,7 +243,7 @@
                                 </span>
                             </a>
                             <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
+                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Floor Standing Stand', 'images/stand-2.webp', 'Rs 9,740', 'It is a sturdy and stylish freestanding unit designed for displaying, organizing, or supporting various items with ease.')"> 
                                 <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
                                     favorite
                                 </span>  
@@ -923,7 +914,6 @@
                 document.getElementById(category).classList.remove('hidden');
             }
         }
-    
         // Show all products by default
         showCategory('all');
     

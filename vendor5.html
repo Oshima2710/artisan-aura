@@ -18,23 +18,49 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <h1 class="text-2xl font-bold">ArtisanAura</h1>
+            <div class="flex items-center gap-8 font-semibold">
+                <!-- Sort By Dropdown Button -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1 px-4 py-2 bg-white border rounded-lg shadow-sm hover:bg-gray-50">
+                        <span class="material-symbols-outlined">sort</span> Sort By
+                    </button>
+                    <ul class="absolute left-0 mt-2 w-48 bg-white border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
+                            <span class="material-symbols-outlined">arrow_upward</span> Price: Low to High
+                        </li>
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
+                            <span class="material-symbols-outlined">arrow_downward</span> Price: High to Low
+                        </li>
+                    </ul>
+                </div>
+                <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined">shopping_cart</span> Cart
+                </a>
+                <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined">favorite</span> WishList
+                </a>
+            </div>
+        </div>
+
         <!-- Category Section -->
         <div class="px-6 py-4" id="category-section">
             <div class="flex items-center justify-center">
                 <!-- Category List -->
-                <div class="flex items-center gap-8 font-semibold">
+                <div class="flex items-center gap-8  font-semibold">
                     <!-- Category 1 (UTILITY) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="utility.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             UTILITY
                         </a>
                         <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">BASKETS</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">TRUNK BOXES</a>
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block ">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('baskets')">BASKETS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('multi-purpose')">MULTI-PURPOSE STAND</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('trunk-boxes')">TRUNK BOXES</a>
                         </div>
                     </div>
         
@@ -45,10 +71,10 @@
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">CANDLE HOLDERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">LANTERNS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">DIYA</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">HANGING LAMPS</a>
                         </div>
                     </div>
         
@@ -59,9 +85,9 @@
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">HANDMADE BOXES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">DECORATIVE STANDS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">JEWELLERY BOXES</a>
                         </div>
                     </div>
         
@@ -72,8 +98,8 @@
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">PLANTERS</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">VASES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">PLANTERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">VASES</a>
                         </div>
                     </div>
         
@@ -84,15 +110,17 @@
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 1</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 2</a>
-                            <a href="#" class="block px-4 py-2 whitespace-nowrap">Subcategory 3</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Picture Frame</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Shelves</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Wine Recks</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Toy Boxes</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Bird House</a>
                         </div>
                     </div>
         
                     <!-- Category 6 (WALL DECOR) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="wall.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             WALL DECOR
                         </a>
                     </div>

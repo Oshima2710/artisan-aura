@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Navbar */
+        #navbar-top {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        #navbar-logo,
+        #navbar-links {
+            transition: opacity 0.3s ease;
+        }
+
+        #navbar.shrunk #navbar-top {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        #navbar.shrunk #category-section {
+            padding-top: 16px;
+        }
+
+        #navbar .expanded #navbar-top {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #navbar .expanded #category-section {
+            padding-top: 40px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Fullscreen Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
+        <!-- Category Section -->
+        <div class="px-6 py-4" id="category-section">
+            <div class="flex items-center justify-center">
+                <div class="flex items-center gap-8">
+                    <!-- Category 1 (UTILITY) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('UTILITY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            UTILITY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">BASKETS</a>
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
+                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">TRUNK BOXES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 (LIGHTINGS) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('LIGHTINGS')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            LIGHTINGS
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
+                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 (HOME DECOR) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('HOME_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            HOME DECOR
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
+                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 (POTTERY) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('POTTERY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            POTTERY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">PLANTERS</a>
+                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">VASES</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 5 (WOODEN CRAFT) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN CRAFT
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 1</a>
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 2</a>
+                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 3</a>
+                        </div>
+                    </div>
+
+                    <!-- Category 6 (WALL DECOR) -->
+                    <div class="relative group">
+                        <a href="#" onclick="filterProducts('WALL_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WALL DECOR
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 1</a>
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 2</a>
+                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 3</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="max-w-[1200px] mx-auto py-12 px-4">
+        <!-- Title Section -->
+        <div class="text-center mb-12">
+            <span class="text-4xl font-bold text-gray-800">Our Products</span>
+            <p class="text-gray-600 mt-4 text-lg">Explore our collection of unique, handcrafted items.</p>
+        </div>
+
+        <!-- Product Grid Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
+                <img src="images/lamp-3.webp" alt="Product 1" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Hanging Lamp</div>
+                    <p class="text-gray-600 mt-2">A beautiful handcrafted hanging lamp to add elegance to any space.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$45.99</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
+                <img src="images/lanterns-2.webp" alt="Product 2" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Decorative Lantern</div>
+                    <p class="text-gray-600 mt-2">Bring a cozy ambiance with this vintage-style lantern, perfect for any home.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$25.49</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="UTILITY">
+                <img src="images/trunk-1.webp" alt="Product 3" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <div class="text-xl font-semibold text-gray-800">Vintage Trunk Box</div>
+                    <p class="text-gray-600 mt-2">A beautifully crafted wooden trunk box that combines functionality with style.</p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-lg font-bold text-gray-800">$69.99</span>
+                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Products... -->
+        </div>
+        <!-- End of Product Grid Section -->
+    </div>
+    <!-- End of Main Container -->
+
+    <script>
+        // Function to filter products based on category
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-item');
+
+            if (category === 'ALL') {
+                products.forEach(product => product.style.display = 'block');
+            } else {
+                products.forEach(product => {
+                    if (product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+
+</html>
