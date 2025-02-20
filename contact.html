@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Artisan Aura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <!-- Logo and Links -->
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <div class="relative flex justify-center w-full">
+                <div class="relative w-[900px]">
+                    <input type="text" id="search-input" class="w-full px-4 py-2 text-black border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Search..." oninput="filterProducts()">
+                    <span class="absolute right-3 top-3/4 transform -translate-y-3/4 text-gray-500 cursor-pointer">
+                        <span class="material-symbols-outlined">search</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-8 font-semibold">
+                <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span> 
+                    <span id="cart-count" class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-2 -right-3 hidden">0</span>
+                </a>                
+                
+                <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <span id="wishlist-count" class="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2 hidden">0</span>
+                </a>
+                
+            </div>
+        </div>
+
+        <!-- Category Section -->
+        <div class="px-6 py-4" id="category-section">
+            <div class="flex items-center justify-center">
+                <!-- Category List -->
+                <div class="flex items-center gap-8  font-semibold">
+                    <!-- Category 1 (UTILITY) -->
+                    <div class="relative group">
+                        <a href="utility.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            UTILITY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block ">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('baskets')">BASKETS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('multi-purpose')">MULTI-PURPOSE STAND</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('trunk-boxes')">TRUNK BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 2 (LIGHTINGS) -->
+                    <div class="relative group">
+                        <a href="lightings.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            LIGHTINGS
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('candle')">CANDLE HOLDERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lanterns')">LANTERNS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('diya')">DIYA</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lamps')">HANGING LAMPS</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 3 (ACCESSORIES) -->
+                    <div class="relative group">
+                        <a href="accessory.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            ACCESSORIES
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('handmade')">HANDMADE BOXES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('decorative')">DECORATIVE STANDS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('Jewellery')">JEWELLERY BOXES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 4 (POTTERY) -->
+                    <div class="relative group">
+                        <a href="pottery.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            POTTERY
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('planters')">PLANTERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('vases')">VASES</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 5 (WOODEN CRAFT) -->
+                    <div class="relative group">
+                        <a href="wooden.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Picture Frame</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Shelves</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Wine Recks</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Toy Boxes</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Bird House</a>
+                        </div>
+                    </div>
+        
+                    <!-- Category 6 (WALL DECOR) -->
+                    <div class="relative group">
+                        <a href="wall.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WALL DECOR
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <main class="flex-1 container mx-auto p-6">
+        <div class="bg-white/80 backdrop-blur-md rounded-3xl shadow-2xl p-8 md:p-12 border border-amber-100">
+            <h2 class="text-4xl md:text-6xl font-bold text-center mb-6 bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                Contact Us
+            </h2>
+            <p class="text-lg md:text-xl text-center text-gray-700 mb-12">
+                We’d love to hear from you! Whether you have questions about our products, artisan partnerships, or anything else, our team is here to help.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <div class="p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 transition-all transform hover:scale-105 hover:shadow-xl">
+                        <span class="material-symbols-outlined text-4xl md:text-5xl text-amber-600 mb-4">location_on</span>
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Visit Our Studio</h3>
+                        <p class="text-gray-600">123 Artisan Street, Craft District, Creative City, 12345</p>
+                    </div>
+
+                    <div class="p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 transition-all transform hover:scale-105 hover:shadow-xl">
+                        <span class="material-symbols-outlined text-4xl md:text-5xl text-amber-600 mb-4">schedule</span>
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Business Hours</h3>
+                        <p class="text-gray-600">Mon - Fri: 9 AM - 6 PM<br>Sat: 10 AM - 4 PM<br>Sun: Closed</p>
+                    </div>
+
+                    <div class="p-6 md:p-8 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 hover:from-amber-100 hover:to-orange-100 transition-all transform hover:scale-105 hover:shadow-xl">
+                        <span class="material-symbols-outlined text-4xl md:text-5xl text-amber-600 mb-4">call</span>
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">Get in Touch</h3>
+                        <p class="text-gray-600">Phone: +1 (555) 123-4567<br>Email: hello@artisanaura.com</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form id="contactForm" class="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-amber-100">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Full Name</label>
+                            <input type="text" id="fullName" class="w-full px-4 py-3 rounded-xl border border-amber-200 focus:border-amber-600 focus:ring-4 focus:ring-amber-100 transition-all" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-xl border border-amber-200 focus:border-amber-600 focus:ring-4 focus:ring-amber-100 transition-all" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 rounded-xl border border-amber-200 focus:border-amber-600 focus:ring-4 focus:ring-amber-100 transition-all" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-gray-700">Message</label>
+                            <textarea id="message" class="w-full px-4 py-3 rounded-xl border border-amber-200 focus:border-amber-600 focus:ring-4 focus:ring-amber-100 transition-all h-32 resize-none" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-amber-600 to-orange-600 text-white py-4 rounded-xl font-semibold hover:from-amber-700 hover:to-orange-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Display Submitted Data -->
+            <div id="displayData" class="hidden mt-12 bg-white rounded-2xl shadow-lg p-8 border border-amber-100">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">Your Submitted Details:</h3>
+                <p class="text-gray-700"><strong>Name:</strong> <span id="displayName"></span></p>
+                <p class="text-gray-700"><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p class="text-gray-700"><strong>Subject:</strong> <span id="displaySubject"></span></p>
+                <p class="text-gray-700"><strong>Message:</strong> <span id="displayMessage"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
+            const displaySection = document.getElementById("displayData");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Get form values
+                const name = document.getElementById("fullName").value;
+                const email = document.getElementById("email").value;
+                const subject = document.getElementById("subject").value;
+                const message = document.getElementById("message").value;
+
+                // Display data
+                document.getElementById("displayName").textContent = name;
+                document.getElementById("displayEmail").textContent = email;
+                document.getElementById("displaySubject").textContent = subject;
+                document.getElementById("displayMessage").textContent = message;
+
+                // Show the display section
+                displaySection.classList.remove("hidden");
+
+                // Clear form fields
+                form.reset();
+            });
+        });
+
+        // cart count
+    function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartCountElement = document.getElementById("cart-count");
+    if (cartCountElement) {
+        cartCountElement.textContent = cart.length > 0 ? cart.length : 0;
+        cartCountElement.classList.toggle("hidden", cart.length === 0);
+    }
+}
+
+// wishlist count
+function updateWishlistCount() {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    let wishlistCountElement = document.getElementById("wishlist-count");
+    if (wishlistCountElement) {
+        wishlistCountElement.textContent = wishlist.length > 0 ? wishlist.length : 0;
+        wishlistCountElement.classList.toggle("hidden", wishlist.length === 0);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartCount();    // Initialize cart item count
+    updateWishlistCount(); // Initialize wishlist item count
+});
+    </script>
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 mt-3 w-full">
+        <div class="px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b pb-8">
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">About</span>
+                    <ul class="space-y-2">
+                        <a href="contact.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                            <span>contact Us</span>
+                        </a>
+                        <li class="cursor-pointer hover:text-gray-400">About Us</li>
+                        <li class="cursor-pointer hover:text-gray-400">Artisan Stories</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Help</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Payments</li>
+                        <li class="cursor-pointer hover:text-gray-400">Shipping</li>
+                        <li class="cursor-pointer hover:text-gray-400">Returns</li>
+                        <li class="cursor-pointer hover:text-gray-400">Cancellation & Return</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Consumer Policy</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Privacy Policy</li>
+                        <li class="cursor-pointer hover:text-gray-400">Terms of Use</li>
+                        <li class="cursor-pointer hover:text-gray-400">Security</li>
+                    </ul>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative border h-[10rem] right-[2rem] bg-gray-500"></div>
+                    <div class="relative flex flex-col items-start right-[2rem] mb-[1rem] space-y-2 ">
+                        <div class="text-gray-700">
+                            <span class="text-gray-400 font-semibold">Mail Us</span>
+                            <a href="mailto:info@artisanaura.com" class="text-blue-600 hover:underline block space-y-4">info@artisanaura.com</a>
+                        </div>                        
+                        <div class="space-y-4 hover:text-gray-400">
+                            <span class="text-gray-400 font-semibold ">Follow Us</span>
+                            <div class="flex space-x-4">
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-pinterest text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify">
+            <div class="flex justify-around items-center pt-6 text-center w-full px-8">
+                <a href="venregist.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">store</span>
+                    <span>Become a Seller</span>
+                </a>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">card_giftcard</span>
+                    <span>Gift Cards</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">help_center</span>
+                    <span>Help Center</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    © 2025 ArtisanAura. All Rights Reserved.
+                </p>
+                <div class="flex items-center space-x-4 mb-2">
+                    <img src="images/payment-icon.png" alt="Visa" class="h-5">
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

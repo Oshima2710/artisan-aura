@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HandiCrafts Artisan Products - Multiple Vendors</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Google Material Icons -->
+    <!-- Google Icon -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
@@ -21,28 +24,46 @@
     <!-- Navigation Bar -->
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg">
         <div class="px-6 py-4 flex items-center justify-between">
-            <h1 class="text-2xl font-bold">ArtisanAura</h1>
+            <!-- Logo and Links -->
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <div class="relative flex justify-center w-full">
+                <div class="relative w-[900px]">
+                    <input type="text" id="search-input" class="w-full px-4 py-2 text-black border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Search..." oninput="filterProducts()">
+                    <span class="absolute right-3 top-3/4 transform -translate-y-3/4 text-gray-500 cursor-pointer">
+                        <span class="material-symbols-outlined">search</span>
+                    </span>
+                </div>
+            </div>
+
             <div class="flex items-center gap-8 font-semibold">
                 <!-- Sort By Dropdown Button -->
                 <div class="relative group">
                     <button class="flex items-center gap-1 px-4 py-2 bg-white border rounded-lg shadow-sm hover:bg-gray-50">
-                        <span class="material-symbols-outlined">sort</span> Sort By
+                        <span class="material-symbols-outlined">sort</span> Sort
                     </button>
                     <ul class="absolute left-0 mt-2 w-48 bg-white border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap" onclick="sortProducts('low-to-high')">
                             <span class="material-symbols-outlined">arrow_upward</span> Price: Low to High
                         </li>
-                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap">
+                        <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer flex items-center gap-2 whitespace-nowrap" onclick="sortProducts('high-to-low')">
                             <span class="material-symbols-outlined">arrow_downward</span> Price: High to Low
                         </li>
                     </ul>
                 </div>
-                <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                    <span class="material-symbols-outlined">shopping_cart</span> Cart
+                <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span> 
+                    <span id="cart-count" class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-2 -right-3 hidden">0</span>
+                </a>                
+                
+                <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <span id="wishlist-count" class="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2 hidden">0</span>
                 </a>
-                <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                    <span class="material-symbols-outlined">favorite</span> WishList
-                </a>
+                
             </div>
         </div>
 
@@ -66,53 +87,53 @@
         
                     <!-- Category 2 (LIGHTINGS) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="lightings.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             LIGHTINGS
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">CANDLE HOLDERS</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">LANTERNS</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">DIYA</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">HANGING LAMPS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('candle')">CANDLE HOLDERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lanterns')">LANTERNS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('diya')">DIYA</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lamps')">HANGING LAMPS</a>
                         </div>
                     </div>
         
                     <!-- Category 3 (ACCESSORIES) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="accessory.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             ACCESSORIES
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">HANDMADE BOXES</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">DECORATIVE STANDS</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">JEWELLERY BOXES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('handmade')">HANDMADE BOXES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('decorative')">DECORATIVE STANDS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('Jewellery')">JEWELLERY BOXES</a>
                         </div>
                     </div>
         
                     <!-- Category 4 (POTTERY) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                        <a href="pottery.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
                             POTTERY
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">PLANTERS</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">VASES</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('planters')">PLANTERS</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('vases')">VASES</a>
                         </div>
                     </div>
         
                     <!-- Category 5 (WOODEN CRAFT) -->
                     <div class="relative group">
-                        <a href="#" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            WOODEN CRAFT
+                        <a href="wooden.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            WOODEN
                         </a>
                         <!-- Dropdown Menu -->
                         <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
                             <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Picture Frame</a>
                             <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Shelves</a>
-                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Wine Recks</a>
+                            <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Wine Racks</a>
                             <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Toy Boxes</a>
                             <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Bird House</a>
                         </div>
@@ -131,850 +152,316 @@
 
     <!-- Main Content Section -->
     <main class="flex-1 container mx-auto p-6">
-                <!-- All Products Section -->
         <div id="all-products" class="product-category mb-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-1.webp" alt="Basket 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Criss-cross Basket</h3>
-                        <p class="text-gray-600 mt-2">A criss-cross basket is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,457</p>
-                            <a href="#cart" class="relative cursor-pointer group flex left-[10rem]" onclick="addToCart(event,'Criss-cross Basket', 'Rs 2,457', 'images/bask-1.webp')">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                          
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'A criss-cross basket is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-2.webp" alt="Basket 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Diamond Wire Basket - Gold</h3>
-                        <p class="text-gray-600 mt-2">It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,457</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Diamond Wire Basket - Gold', 'images/bask-2.webp', 'It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-3.webp" alt="Basket 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Classic Steel wire basket</h3>
-                        <p class="text-gray-600 mt-2">It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 1,670</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Classic Steel wire basket', 'images/bask-3.webp', 'It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.', 'Rs 1,670')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-1.jpg" alt="Stand 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Wooden Cutlery Holder</h3>
-                        <p class="text-gray-600 mt-2">The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 3,813</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex  left-[10rem]" onclick="addToWishlist(event, 'Wooden Cutlery Holder', 'images/stand-1.jpg', 'The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.', 'Rs 3,813')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 5 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-2.webp" alt="Stand 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Floor Standing Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a sturdy and stylish freestanding unit designed for displaying, organizing, or supporting various items with ease.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 9,740</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Floor Standing Stand', 'images/stand-2.webp', 'It is a sturdy and stylish freestanding unit designed for displaying, organizing, or supporting various items with ease.', 'Rs 9,740')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 6 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-3.jpg" alt="Stand 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Pen Stand</h3>
-                        <p class="text-gray-600 mt-2">Pen Stand with an inbuilt Mobile Stand is a stylish and functional organizer, combining traditional craftsmanship with modern utility.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Pen Stand', 'images/stand-3.jpg', 'Pen Stand with an inbuilt Mobile Stand is a stylish and functional organizer, combining traditional craftsmanship with modern utility.','Rs 2,135')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 7 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-4.webp" alt="Stand 4" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Multi-Purpose Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a versatile and durable organizer designed to hold and display various items, enhancing functionality and space efficiency.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Multi-Purpose Stand', 'images/stand-4.webp', 'It is a versatile and durable organizer designed to hold and display various items, enhancing functionality and space efficiency.','Rs 2,135')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 8 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-1.webp" alt="Stand 5" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Gold-Black Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a sleek and elegant display piece featuring a striking gold and black finish, perfect for adding a touch of sophistication to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Gold-Black Stand', 'images/multi-1.webp', 'It is a sleek and elegant display piece featuring a striking gold and black finish, perfect for adding a touch of sophistication to any space.','Rs 2,135')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 9 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-2.webp" alt="Stand 6" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Etch Red And Ivory Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully crafted piece featuring intricate etched patterns in rich red and ivory tones, adding elegance and charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Etch Red And Ivory Stand', 'images/bask-1.webp', 'It is a beautifully crafted piece featuring intricate etched patterns in rich red and ivory tones, adding elegance and charm to any space.','Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 10 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-3.webp" alt="Stand 7" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Etch Gold Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a luxurious handcrafted piece with intricate etched detailing and a radiant gold finish, perfect for elegant display and organization.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Etch Gold Stand', 'images/multi-3.webp', 'It is a luxurious handcrafted piece with intricate etched detailing and a radiant gold finish, perfect for elegant display and organization.','Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 11 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-1.webp" alt="Box 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Natural Cane Wicker</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully handcrafted storage piece made from woven cane, adding a rustic and organic charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Natural Cane Wicker', 'images/box-1.webp', 'It is a beautifully handcrafted storage piece made from woven cane, adding a rustic and organic charm to any space.','Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 12 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-2.webp" alt="Box 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Vintage Bone</h3>
-                        <p class="text-gray-600 mt-2">It is a handcrafted storage piece featuring intricate bone inlay detailing, offering timeless elegance and antique charm.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, 'Vintage Bone', 'images/box-2.webp', 'It is a handcrafted storage piece featuring intricate bone inlay detailing, offering timeless elegance and antique charm.','Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 13 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-3.webp" alt="Box 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Jewellery Box</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully crafted storage piece designed to keep precious accessories organized, secure, and elegantly displayed.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 14 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-1.webp" alt="Box 4" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Set of 3 Vintage Style Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">The features elegantly crafted storage pieces with antique-inspired detailing, perfect for adding timeless charm and organization to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 15 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-2.webp" alt="Box 5" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Set of 3 Decorative Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">It offers stylish and functional storage, featuring intricate designs that add elegance and charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 16 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-3.webp" alt="Box 6" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Powder Coated Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">It is a durable and stylish storage solution with a smooth, protective finish, combining functionality with a sleek modern look.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Baskets Section -->
-        <div id="baskets" class="product-category mb-12 hidden">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- product 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-1.webp" alt="Basket 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Criss-cross Basket</h3>
-                        <p class="text-gray-600 mt-2">A criss-cross basket is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,457</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                          
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-2.webp" alt="Basket 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Diamond Wire Basket - Gold</h3>
-                        <p class="text-gray-600 mt-2">It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,457</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/bask-3.webp" alt="Basket 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Classic Steel wire basket</h3>
-                        <p class="text-gray-600 mt-2">It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 1,670</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Multi-Purpose Stand Section -->
-        <div id="multi-purpose" class="product-category mb-12 hidden">
-            <h4 class="text-xl font-semibold mb-4">Multi-Purpose Stands</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- product 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-1.jpg" alt="Stand 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Wooden Cutlery Holder</h3>
-                        <p class="text-gray-600 mt-2">The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 3,813</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                        
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 5 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-2.webp" alt="Stand 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Floor Standing Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a sturdy and stylish freestanding unit designed for displaying, organizing, or supporting various items with ease.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 9,740</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 6 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-3.jpg" alt="Stand 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Pen Stand</h3>
-                        <p class="text-gray-600 mt-2">Pen Stand with an inbuilt Mobile Stand is a stylish and functional organizer, combining traditional craftsmanship with modern utility.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 7 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/stand-4.webp" alt="Stand 4" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Multi-Purpose Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a versatile and durable organizer designed to hold and display various items, enhancing functionality and space efficiency.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 8 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-1.webp" alt="Stand 5" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Gold-Black Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a sleek and elegant display piece featuring a striking gold and black finish, perfect for adding a touch of sophistication to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 9 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-2.webp" alt="Stand 6" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Etch Red And Ivory Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully crafted piece featuring intricate etched patterns in rich red and ivory tones, adding elegance and charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 10 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/multi-3.webp" alt="Stand 7" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Etch Gold Stand</h3>
-                        <p class="text-gray-600 mt-2">It is a luxurious handcrafted piece with intricate etched detailing and a radiant gold finish, perfect for elegant display and organization.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Trunk Boxes Section -->
-        <div id="trunk-boxes" class="product-category mb-12 hidden">
-            <h4 class="text-xl font-semibold mb-4">Trunk Boxes</h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- product 11 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-1.webp" alt="Box 1" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Natural Cane Wicker Decor Box</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully handcrafted storage piece made from woven cane, adding a rustic and organic charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 12 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-2.webp" alt="Box 2" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Vintage Bone Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">It is a handcrafted storage piece featuring intricate bone inlay detailing, offering timeless elegance and antique charm.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 13 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/box-3.webp" alt="Box 3" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Jewellery Box</h3>
-                        <p class="text-gray-600 mt-2">It is a beautifully crafted storage piece designed to keep precious accessories organized, secure, and elegantly displayed.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 14 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-1.webp" alt="Box 4" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Set of 3 Vintage Style Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">The features elegantly crafted storage pieces with antique-inspired detailing, perfect for adding timeless charm and organization to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 15 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-2.webp" alt="Box 5" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Set of 3 Decorative Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">It offers stylish and functional storage, featuring intricate designs that add elegance and charm to any space.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- product 16 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]">
-                    <img src="images/trunk-3.webp" alt="Box 6" class="w-full h-49 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-xl font-semibold text-gray-800">Powder Coated Trunk Box</h3>
-                        <p class="text-gray-600 mt-2">It is a durable and stylish storage solution with a smooth, protective finish, combining functionality with a sleek modern look.</p>
-                        <div class="flex items-center space-x-4 mt-5">
-                            <!-- Product Amount -->
-                            <p class="text-lg font-bold">Rs 2,135</p>
-                            <a href="cart.html" class="relative cursor-pointer group flex left-[10rem]">
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                                  shopping_cart
-                                </span>
-                            </a>
-                            <!-- Favorite Button -->
-                            <a href="#wish" class="relative cursor-pointer group flex" onclick="addToWishlist(event, 'Criss-cross Basket', 'images/bask-1.webp', 'Rs 2,457')"> 
-                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
-                                    favorite
-                                </span>  
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="product-list">
+                <!-- Products will be dynamically inserted here -->
             </div>
         </div>
     </main>
 
-    <!-- JavaScript -->
-    <script>
-        function showCategory(category) {
-            // Hide all product categories
-            document.querySelectorAll('.product-category').forEach(section => {
-                section.classList.add('hidden');
-            });
-            // Show the selected category
-            if (category === 'all') {
-                document.querySelectorAll('.product-category').forEach(section => {
-                    section.classList.remove('hidden');
-                });
-            } else {
-                document.getElementById(category).classList.remove('hidden');
-            }
-        }
-        // Show all products by default
-        showCategory('all');
-    
-        // Wishlist functionality
-        function addToWishlist(event, productName, productImage, productPrice, productDescription) {
-        // Change the heart icon color to red
-        const heartIcon = event.currentTarget.querySelector('.favorite-icon');
-        heartIcon.style.color = 'red';
-
-        // Show a popup message
-        alert(`${productName} has been added to your wishlist!`);
-
-        // Get the current wishlist from localStorage or initialize an empty array
-        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-
-        // Check if the product already exists in the wishlist
-        const existingProduct = wishlist.find(item => item.name === productName);
-        if (!existingProduct) {
-            // Add the selected product to the wishlist
-            wishlist.push({ name: productName, image: productImage, price: productPrice, description: productDescription });
-            // Save the updated wishlist back to localStorage
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        }
-    }
-        // cart
-        document.addEventListener("DOMContentLoaded", function () {
-            function addToCart(product) {
-                let cart = JSON.parse(localStorage.getItem("cart")) || [];
-                let existingProduct = cart.find(item => item.name === product.name);
-    
-                if (existingProduct) {
-                    existingProduct.quantity += 1;
-                } else {
-                    product.quantity = 1;
-                    cart.push(product);
-                }
-    
-                localStorage.setItem("cart", JSON.stringify(cart));
-                alert(`${product.name} has been added to your cart!`);
-            }
-            
-            document.querySelectorAll(".add-to-cart").forEach(button => {
-                button.addEventListener("click", function () {
-                    const productElement = this.closest(".product-item");
-                    const product = {
-                        name: productElement.getAttribute("data-name"),
-                        price: parseFloat(productElement.getAttribute("data-price")),
-                        image: productElement.getAttribute("data-image"),
-                    };
-                    addToCart(product);
-                });
-            });
-        });
-    </script>
-    
     <!-- Footer -->
-    <footer class="bg-black shadow-md py-6">
-        <div class="container mx-auto text-center">
-            <p class="text-white">© 2025 HandiCrafts. All Rights Reserved.</p>
+    <footer class="bg-black text-white py-12 mt-3 w-full">
+        <div class="px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b pb-8">
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">About</span>
+                    <ul class="space-y-2">
+                        <a href="contact.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                            <span>contact Us</span>
+                        </a>
+                        <li class="cursor-pointer hover:text-gray-400">About Us</li>
+                        <li class="cursor-pointer hover:text-gray-400">Artisan Stories</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Help</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Payments</li>
+                        <li class="cursor-pointer hover:text-gray-400">Shipping</li>
+                        <li class="cursor-pointer hover:text-gray-400">Returns</li>
+                        <li class="cursor-pointer hover:text-gray-400">Cancellation & Return</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Consumer Policy</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Privacy Policy</li>
+                        <li class="cursor-pointer hover:text-gray-400">Terms of Use</li>
+                        <li class="cursor-pointer hover:text-gray-400">Security</li>
+                    </ul>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative border h-[10rem] right-[2rem] bg-gray-500"></div>
+                    <div class="relative flex flex-col items-start right-[2rem] mb-[1rem] space-y-2 ">
+                        <div class="text-gray-700">
+                            <span class="text-gray-400 font-semibold">Mail Us</span>
+                            <a href="mailto:info@artisanaura.com" class="text-blue-600 hover:underline block space-y-4">info@artisanaura.com</a>
+                        </div>                        
+                        <div class="space-y-4 hover:text-gray-400">
+                            <span class="text-gray-400 font-semibold ">Follow Us</span>
+                            <div class="flex space-x-4">
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-pinterest text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify">
+            <div class="flex justify-around items-center pt-6 text-center w-full px-8">
+                <a href="venregist.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">store</span>
+                    <span>Become a Seller</span>
+                </a>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">card_giftcard</span>
+                    <span>Gift Cards</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">help_center</span>
+                    <span>Help Center</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    © 2025 ArtisanAura. All Rights Reserved.
+                </p>
+                <div class="flex items-center space-x-4 mb-2">
+                    <img src="images/payment-icon.png" alt="Visa" class="h-5">
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+        const products = [
+            {
+                name: "Criss-cross Basket",
+                image: "images/bask-1.webp",
+                description: "A criss-cross basket is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.",
+                price: "Rs 2,123",
+                category: "baskets"
+            },
+            {
+                name: "Diamond Wire Basket - Gold",
+                image: "images/bask-2.webp",
+                description: "It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.",
+                price: "Rs 2,457",
+                category: "baskets"
+            },
+            {
+                name: "Classic Steel wire basket",
+                image: "images/bask-3.webp",
+                description: "It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 1,670",
+                category: "baskets"
+            },
+            {
+                name: "Wooden Cutlery Holder",
+                image: "images/stand-1.jpg",
+                description: "The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.",
+                price: "Rs 3,813",
+                category: "multi-purpose"
+            },
+            {
+                name: "Floor Standing Stand",
+                image: "images/stand-2.webp",
+                description: "It is a sturdy and stylish freestanding unit designed for displaying, organizing, or supporting various items with ease.",
+                price: "Rs 9,740",
+                category: "multi-purpose"
+            },
+            {
+                name: "Pen Stand",
+                image: "images/stand-3.jpg",
+                description: "Pen Stand with an inbuilt Mobile Stand is a stylish and functional organizer, combining traditional craftsmanship with modern utility.",
+                price: "Rs 1,450",
+                category: "multi-purpose"
+            },
+            {
+                name: "Multi-Purpose Stand",
+                image: "images/stand-4.webp",
+                description: "It is a versatile and durable organizer designed to hold and display various items, enhancing functionality and space efficiency.",
+                price: "Rs 3,135",
+                category: "multi-purpose"
+            },
+            {
+                name: "Gold-Black Stand",
+                image: "images/multi-1.webp",
+                description: "It is a sleek and elegant display piece featuring a striking gold and black finish, perfect for adding a touch of sophistication to any space.",
+                price: "Rs 2,135",
+                category: "multi-purpose"
+            },
+            {
+                name: "Etch Red And Ivory Stand",
+                image: "images/multi-2.webp",
+                description: "It is a beautifully crafted piece featuring intricate etched patterns in rich red and ivory tones, adding elegance and charm to any space.",
+                price: "Rs 2,457",
+                category: "multi-purpose"
+            },
+            {
+                name: "Etch Gold Stand",
+                image: "images/multi-3.webp",
+                description: "It is a luxurious handcrafted piece with intricate etched detailing and a radiant gold finish, perfect for elegant display and organization.",
+                price: "Rs 2,457",
+                category: "multi-purpose"
+            },
+            {
+                name: "Natural Cane Wicker",
+                image: "images/box-1.webp",
+                description: "It is a beautifully handcrafted storage piece made from woven cane, adding a rustic and organic charm to any space.",
+                price: "Rs 3,456",
+                category: "trunk-boxes"
+            },
+            {
+                name: "Vintage Bone",
+                image: "images/box-2.webp",
+                description: "It is a handcrafted storage piece featuring intricate bone inlay detailing, offering timeless elegance and antique charm.",
+                price: "Rs 2,135",
+                category: "trunk-boxes"
+            },
+            {
+                name: "Jewellery Box",
+                image: "images/box-3.webp",
+                description: "It is a beautifully crafted storage piece designed to keep precious accessories organized, secure, and elegantly displayed.",
+                price: "Rs 1,500",
+                category: "trunk-boxes"
+            },
+            {
+                name: "Set of 3 Vintage Style",
+                image: "images/trunk-1.webp",
+                description: "The features elegantly crafted storage pieces with antique-inspired detailing, perfect for adding timeless charm and organization to any space.",
+                price: "Rs 5,135",
+                category: "trunk-boxes"
+            },
+            {
+                name: "Set of 3 Decorative",
+                image: "images/trunk-2.webp",
+                description: "It offers stylish and functional storage, featuring intricate designs that add elegance and charm to any space.",
+                price: "Rs 5,135",
+                category: "trunk-boxes"
+            },
+            {
+                name: "Powder Coated Trunk Box",
+                image: "images/trunk-3.webp",
+                description: "It is a durable and stylish storage solution with a smooth, protective finish, combining functionality with a sleek modern look.",
+                price: "Rs 1,900",
+                category: "trunk-boxes"
+            },
+            // Add more products as needed
+        ];
+
+        function renderProducts(filteredProducts) {
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = ''; // Clear existing products
+
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = "bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 w-[400px]";
+                productCard.innerHTML = `
+                    <a href="buynow.html?name=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.description)}&price=${encodeURIComponent(product.price)}">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-[20rem] object-cover">
+                    
+                    </a>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">${product.name}</h3>
+                        <p class="text-gray-600 mt-2">${product.description}</p>
+                        <div class="flex items-center space-x-4 mt-5">
+                            <p class="text-lg font-bold">${product.price}</p>
+                            <a href="#" class="relative cursor-pointer group flex left-[10rem] add-to-cart" 
+                                onclick="addToCart(event, '${product.name}', '${product.image}', '${product.price}')">
+                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
+                                    shopping_cart
+                                </span>
+                            </a>
+                            <a href="#wish" class="relative cursor-pointer group flex left-[10rem]" onclick="addToWishlist(event, '${product.name}', '${product.image}', '${product.description}', '${product.price}')"> 
+                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
+                                    favorite
+                                </span>  
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchInput));
+            renderProducts(filteredProducts);
+        }
+
+        function showCategory(category) {
+            const filteredProducts = products.filter(product => product.category === category);
+            renderProducts(filteredProducts);
+        }
+
+        function sortProducts(order) {
+            const sortedProducts = [...products]; // Create a copy of the products array
+            if (order === 'low-to-high') {
+                sortedProducts.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace("Rs ", "").replace(",", ""));
+                    const priceB = parseInt(b.price.replace("Rs ", "").replace(",", ""));
+                    return priceA - priceB; // Sort in ascending order
+                });
+            } else if (order === 'high-to-low') {
+                sortedProducts.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace("Rs ", "").replace(",", ""));
+                    const priceB = parseInt(b.price.replace("Rs ", "").replace(",", ""));
+                    return priceB - priceA; // Sort in descending order
+                });
+            }
+            renderProducts(sortedProducts); // Render the sorted products
+        }
+
+        function addToCart(event, name, image, price) {
+            event.preventDefault();
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name, image, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert(`${name} has been added to your cart!`);
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartCountElement = document.getElementById("cart-count");
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length > 0 ? cart.length : 0;
+                cartCountElement.classList.toggle("hidden", cart.length === 0);
+            }
+        }
+
+        function addToWishlist(event, productName, productImage, productDescription, productPrice) {
+            event.preventDefault();
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const existingProduct = wishlist.find(item => item.name === productName);
+            if (!existingProduct) {
+                wishlist.push({ name: productName, image: productImage, price: productPrice, description: productDescription });
+                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                alert(`${productName} has been added to your wishlist!`);
+                updateWishlistCount();
+            }
+        }
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            let wishlistCountElement = document.getElementById("wishlist-count");
+            if (wishlistCountElement) {
+                wishlistCountElement.textContent = wishlist.length > 0 ? wishlist.length : 0;
+                wishlistCountElement.classList.toggle("hidden", wishlist.length === 0);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateCartCount();
+            updateWishlistCount();
+            renderProducts(products); // Show all products by default
+        });
+    </script>
+    
 </body>
 </html>

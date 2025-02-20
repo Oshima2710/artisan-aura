@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-gray-800">Checkout</h1>
+        <a href="cart.html" class="text-blue-600 font-medium hover:text-blue-800 transition">Back to Cart</a>
+    </nav>
+
+    <!-- Checkout Container -->
+    <div class="max-w-6xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Shipping & Payment Form -->
+            <div class="space-y-6">
+                <h3 class="text-2xl font-semibold text-gray-800 border-b pb-2">Shipping Information</h3>
+                <form id="checkout-form" class="mt-4 space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <input type="text" id="name" placeholder="First Name" class="w-full p-3 border rounded-lg" required>
+                        <input type="text" placeholder="Last Name" class="w-full p-3 border rounded-lg">
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" class="w-full p-3 border rounded-lg" required>
+                    <input type="text" id="address" placeholder="Address" class="w-full p-3 border rounded-lg" required>
+                    <input type="text" id="city" placeholder="City" class="w-full p-3 border rounded-lg" required>
+                    <input type="text" id="zip" placeholder="Postal Code" class="w-full p-3 border rounded-lg" required>
+
+                    <h3 class="text-xl font-semibold text-gray-800">Payment Method</h3>
+                    <select id="payment-method" class="w-full p-3 border rounded-lg">
+                        <option value="credit-card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+
+                    <button type="submit" class="w-full bg-blue-600 text-white px-6 py-3 text-lg rounded-lg shadow-md hover:bg-blue-700 transition">
+                        Place Order
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 border-b pb-2">Order Summary</h3>
+                <div id="order-items" class="space-y-4 mt-4"></div>
+                <div id="total-price" class="text-lg font-semibold text-gray-800 mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            loadOrderDetails();
+        });
+
+        function loadOrderDetails() {
+            const orderItemsContainer = document.getElementById("order-items");
+            const totalPriceContainer = document.getElementById("total-price");
+
+            // Get product details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const productNames = urlParams.getAll("name");
+            const productPrices = urlParams.getAll("price");
+            const productImages = urlParams.getAll("image");
+
+            let total = 0;
+
+            // Loop through each product and display it
+            productNames.forEach((productName, index) => {
+                const productPrice = parseFloat(productPrices[index].replace(/[^\d.]/g, "")) || 0;
+                const productImage = productImages[index];
+
+                // Create an order item object
+                const orderItem = {
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1 // Default quantity
+                };
+
+                // Display the order item
+                const orderItemDiv = document.createElement("div");
+                orderItemDiv.classList.add("flex", "items-center", "space-x-4", "border-b", "pb-4");
+                orderItemDiv.innerHTML = `
+                    <img src="${orderItem.image}" alt="${orderItem.name}" class="w-24 h-24 rounded-lg shadow-md">
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-gray-800">${orderItem.name}</h3>
+                        <p class="text-gray-600">Rs ${orderItem.price.toFixed(2)} x ${orderItem.quantity}</p>
+                    </div>
+                    <div class="text-lg font-semibold text-gray-800">Rs ${orderItem.price.toFixed(2)}</div>
+                `;
+                orderItemsContainer.appendChild(orderItemDiv);
+
+                // Update total price
+                total += orderItem.price;
+            });
+
+            totalPriceContainer.innerHTML = `<p class='text-lg font-semibold text-gray-800'>Total: Rs ${total.toFixed(2)}</p>`;
+        }
+
+        document.getElementById("checkout-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const city = document.getElementById("city").value;
+            const zip = document.getElementById("zip").value;
+
+            if (!name || !email || !address || !city || !zip) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            let orderId = "ORD" + Math.floor(Math.random() * 1000000);
+            let paymentMethod = document.getElementById("payment-method").value;
+
+            // Create an order details object
+            let orderDetails = {
+                orderId: orderId,
+                name: name,
+                email: email,
+                address: `${address}, ${city}, ${zip}`,
+                items: [], // Initialize items array
+                paymentMethod: paymentMethod,
+                status: "Processing"
+            };
+
+            // Get product details from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const productNames = urlParams.getAll("name");
+            const productPrices = urlParams.getAll("price");
+            const productImages = urlParams.getAll("image");
+
+            // Loop through each product and add to order details
+            productNames.forEach((productName, index) => {
+                const productPrice = parseFloat(productPrices[index].replace(/[^\d.]/g, "")) || 0;
+                const productImage = productImages[index];
+
+                orderDetails.items.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1 // Default quantity
+                });
+            });
+
+            // Store order details in local storage
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(orderDetails);
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            const successMessage = document.createElement("div");
+            successMessage.className = "bg-green-100 text-green-800 p-4 rounded-lg text-center mt-4";
+            successMessage.innerHTML = `Order placed successfully! 🎉 Your Order ID is: <strong>${orderId}</strong>`;
+            document.body.prepend(successMessage);
+
+            setTimeout(() => {
+                window.location.href = "order.html"; // Redirect to order confirmation page
+            }, 3000);
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 mt-3 w-full">
+        <div class="px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b pb-8">
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">About</span>
+                    <ul class="space-y-2">
+                        <a href="contact.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                            <span>contact Us</span>
+                        </a>
+                        <li class="cursor-pointer hover:text-gray-400">About Us</li>
+                        <li class="cursor-pointer hover:text-gray-400">Artisan Stories</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Help</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Payments</li>
+                        <li class="cursor-pointer hover:text-gray-400">Shipping</li>
+                        <li class="cursor-pointer hover:text-gray-400">Returns</li>
+                        <li class="cursor-pointer hover:text-gray-400">Cancellation & Return</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Consumer Policy</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Privacy Policy</li>
+                        <li class="cursor-pointer hover:text-gray-400">Terms of Use</li>
+                        <li class="cursor-pointer hover:text-gray-400">Security</li>
+                    </ul>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative border h-[10rem] right-[2rem] bg-gray-500"></div>
+                    <div class="relative flex flex-col items-start right-[2rem] mb-[1rem] space-y-2 ">
+                        <div class="text-gray-700">
+                            <span class="text-gray-400 font-semibold">Mail Us</span>
+                            <a href="mailto:info@artisanaura.com" class="text-blue-600 hover:underline block space-y-4">info@artisanaura.com</a>
+                        </div>                        
+                        <div class="space-y-4 hover:text-gray-400">
+                            <span class="text-gray-400 font-semibold ">Follow Us</span>
+                            <div class="flex space-x-4">
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-pinterest text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify">
+            <div class="flex justify-around items-center pt-6 text-center w-full px-8">
+                <a href="venregist.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">store</span>
+                    <span>Become a Seller</span>
+                </a>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">card_giftcard</span>
+                    <span>Gift Cards</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">help_center</span>
+                    <span>Help Center</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    © 2025 ArtisanAura. All Rights Reserved.
+                </p>
+                <div class="flex items-center space-x-4 mb-2">
+                    <img src="images/payment-icon.png" alt="Visa" class="h-5">
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

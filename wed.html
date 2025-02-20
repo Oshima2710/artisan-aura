@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent body scroll */
+        }
+        #webcrumbs {
+            height: calc(100% - 60px); /* Adjust height to account for footer */
+            display: flex;
+        }
+        aside {
+            width: 300px;
+            height: 100vh;
+            background-color: white;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            overflow-y: auto; /* Allow scrolling in the sidebar */
+        }
+        .content {
+            margin-left: 300px;
+            flex: 1;
+            overflow-y: auto; /* Allow scrolling in the content area */
+            padding-bottom: 2rem; /* Add padding to the bottom */
+        }
+        img {
+            width: 100%; /* Ensures the image takes the full width of the card */
+            height: 300px; /* Set a fixed height */
+            object-fit: cover; /* Ensures the image covers the area */
+        }
+        /* Ensure the product list is responsive */
+        #product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+            gap: 1rem; /* Space between cards */
+            padding: 1rem; /* Add padding to the grid */
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-100 rounded-xl">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg">
+        <div class="px-6 py-4 flex items-center justify-between">
+            <!-- Logo and Links -->
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
+            </a>
+
+            <!-- Search Bar (Centered) -->
+            <div class="relative flex justify-center w-full">
+                <div class="relative w-[900px]">
+                    <input type="text" id="search-input" class="w-full px-4 py-2 text-black border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Search..." oninput="filterProducts()">
+                    <span class="absolute right-3 top-3/4 transform -translate-y-3/4 text-gray-500 cursor-pointer">
+                        <span class="material-symbols-outlined">search</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-8 font-semibold">
+                <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined text-2xl">shopping_cart</span> 
+                    <span id="cart-count" class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-2 -right-3 hidden">0</span>
+                </a>                
+                
+                <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                    <span class="material-symbols-outlined">favorite</span>
+                    <span id="wishlist-count" class="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2 hidden">0</span>
+                </a>
+                
+            </div>
+        </div>
+
+        <!-- Category Section -->
+        <div class="px-6 py-4" id="category-section">
+            <div class="flex items-center justify-center">
+                <!-- Category List -->
+                <div class="flex items-center gap-8  font-semibold">
+                    <!-- category1 -->
+                    <div class="relative group">
+                        <a href="jewellery.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Jewellery
+                        </a>
+                    </div>
+                    <!-- category2 -->
+                    <div class="relative group">
+                        <a href="portrait.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Portrait
+                        </a>
+                    </div>
+                    <!-- category3 -->
+                    <div class="relative group">
+                        <a href="bags.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Bags
+                        </a>
+                    </div>
+                    <!-- category4 -->
+                    <div class="relative group">
+                        <a href="wed.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Wedding
+                        </a>
+                    </div>
+                    <!-- category5 -->
+                    <div class="relative group">
+                        <a href="birth.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Birthday
+                        </a>
+                    </div>
+                    <!-- category6 -->
+                    <div class="relative group">
+                        <a href="plant.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Plants
+                        </a>
+                    </div>
+                    <!-- category7 -->
+                    <div class="relative group">
+                        <a href="shelve.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Shelves
+                        </a>
+                    </div>
+                    <!-- category8 -->
+                    <div class="relative group">
+                        <a href="frame.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Frames
+                        </a>
+                    </div>
+                    <!-- category9 -->
+                    <div class="relative group">
+                        <a href="toy.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Toy Box
+                        </a>
+                    </div>
+                    <!-- category10 -->
+                    <div class="relative group">
+                        <a href="vase.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Vases
+                        </a>
+                    </div>
+                    <!-- category11 -->
+                    <div class="relative group">
+                        <a href="wal.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Walls
+                        </a>
+                    </div>
+                    <!-- category12 -->
+                    <div class="relative group">
+                        <a href="wine.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                            Wine Recks
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="webcrumbs"> 
+        <aside style="transform: translateY(-50px);">
+            <h2 class="text-xl font-bold mb-6">Filters</h2>
+            <div class="mb-8">
+                <h3 class="font-semibold mb-4">Colors</h3>
+                <div class="grid grid-cols-4 gap-3">
+                    <button class="color-filter w-8 h-8 rounded-full bg-red-500" data-color="red"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-blue-500" data-color="blue"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-green-500" data-color="green"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-yellow-500" data-color="yellow"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-purple-500" data-color="purple"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-pink-500" data-color="pink"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-black" data-color="black"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-white border-2" data-color="white"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-orange-500" data-color="orange"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-teal-500" data-color="teal"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-gray-500" data-color="gray"></button>
+                    <button class="color-filter w-8 h-8 rounded-full bg-yellow-900" data-color="dark-brown"></button>
+                </div>
+            </div>
+            <div class="mb-8">
+                <h3 class="font-semibold mb-4">Price Range</h3>
+                <input type="range" id="price-range" class="w-full h-2 bg-blue-100 rounded-lg appearance-none cursor-pointer" min="100" max="10000" step="10" />
+                <div class="flex justify-between mt-2">
+                    <span class="text-sm text-gray-600">Rs 100</span>
+                    <span class="text-sm text-gray-600">Rs 10000</span>
+                </div>
+                <p class="mt-2 text-lg font-semibold" id="price-display">Selected Price: Rs 10000</p>
+            </div>
+            <div class="mb-8">
+                <h3 class="font-semibold mb-4">Sort By</h3>
+                <select id="sort-options" class="w-full p-2 border rounded">
+                    <option value="default">Default</option>
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transform hover:scale-[1.02] transition-all duration-300" id="apply-filters">
+                Apply Filters
+            </button>
+        </aside>
+        <div class="content">
+            <div id="no-products-alert" class="hidden text-center my-8">
+                <img src="images/not.gif" alt="No Products Found" class="w-32 h-32 mb-4 mx-auto">
+                <span class="text-lg font-semibold text-red-500">No products found!</span>
+            </div>
+            <main class="grid grid-cols-3 gap-y-8 gap-x-4 flex-1" id="product-list">
+                <!-- Product cards will be injected here by JavaScript -->
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const products = [
+        {
+                name: "Personalized Wedding Card",
+                image: "images/wed1.jpg",
+                description: "A woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.",
+                price: "Rs 2,123",
+                color: "gray"
+            },
+            {
+                name: "Hand Crafted Card",
+                image: "images/wed2.jpg",
+                description: "A stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.",
+                price: "Rs 2,457",
+                color: "pink"
+            },
+            {
+                name: "Custom Hand-Drawn Card",
+                image: "images/wed3.jpg",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 1,670",
+                color: "blue"
+            },
+            {
+                name: "Heaven Card",
+                image: "images/wed4.jpg",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 5,670",
+                color: "red"
+            },
+            {
+                name: "Personalized Bottle",
+                image: "images/wed5.jpg",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 9,670",
+                color: "gold"
+            },
+            {
+                name: "Personalized Keychains",
+                image: "images/him6.webp",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 3,670",
+                color: "blue"
+            },
+            {
+                name: "Couple Frame",
+                image: "images/frame3.jpg",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 4,670",
+                color: "black"
+            },
+            {
+                name: "Wedding Hoop Art",
+                image: "images/wed6.jpg",
+                description: "A sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.",
+                price: "Rs 4,670",
+                color: "black"
+            },
+        ];
+
+        function applyFilters() {
+        const searchInput = document.getElementById('search-input').value.toLowerCase();
+        const selectedColor = document.querySelector('.color-filter.selected')?.getAttribute('data-color');
+        const maxPrice = document.getElementById('price-range').value;
+
+        let filteredProducts = products;
+
+        // Filter by search input
+        if (searchInput) {
+            filteredProducts = filteredProducts.filter(product => product.name.toLowerCase().includes(searchInput));
+        }
+
+        // Filter by color
+        if (selectedColor) {
+            filteredProducts = filteredProducts.filter(product => product.color === selectedColor);
+        }
+
+        // Filter by price
+        if (maxPrice) {
+            filteredProducts = filteredProducts.filter(product => {
+                const priceValue = parseInt(product.price.replace("Rs ", "").replace(",", ""));
+                return priceValue <= maxPrice;
+            });
+        }
+
+        renderProducts(filteredProducts);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        updateCartCount();
+        updateWishlistCount();
+        renderProducts(products); // Show all products by default
+
+        // Color filter event listeners
+        const colorFilters = document.querySelectorAll('.color-filter');
+        colorFilters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                // Toggle selected class
+                colorFilters.forEach(f => f.classList.remove('selected'));
+                filter.classList.add('selected');
+
+                // Apply filters immediately when a color is selected
+                applyFilters();
+            });
+        });
+
+        // Price range event listener
+        const priceRangeInput = document.getElementById('price-range');
+        priceRangeInput.addEventListener('input', () => {
+            const selectedPrice = priceRangeInput.value;
+            document.getElementById('price-display').textContent = `Selected Price: Rs ${selectedPrice}`;
+            applyFilters(); // Apply filters immediately when price range is adjusted
+        });
+
+        // Sort options event listener
+        const sortOptions = document.getElementById('sort-options');
+        sortOptions.addEventListener('change', () => {
+            const selectedSort = sortOptions.value;
+            sortProducts(selectedSort);
+        });
+
+        // Apply filters button
+        const applyFiltersButton = document.getElementById('apply-filters');
+        applyFiltersButton.addEventListener('click', () => {
+            applyFilters(); // Apply all filters when the button is clicked
+        });
+    });
+
+    function renderProducts(filteredProducts) {
+        const productList = document.getElementById('product-list');
+        const noProductsAlert = document.getElementById('no-products-alert');
+        productList.innerHTML = ''; // Clear existing products
+
+        if (filteredProducts.length === 0) {
+            noProductsAlert.classList.remove('hidden'); // Show alert
+        } else {
+            noProductsAlert.classList.add('hidden'); // Hide alert
+            filteredProducts.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = "bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300"; // No fixed width here
+                productCard.innerHTML = `
+                    <a href="buynow.html?name=${encodeURIComponent(product.name)}&image=${encodeURIComponent(product.image)}&description=${encodeURIComponent(product.description)}&price=${encodeURIComponent(product.price)}">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-[20rem] object-cover"> <!-- Set a fixed height here -->
+                    </a>
+                    <div class="p-4">
+                        <h3 class="text-xl font-semibold text-gray-800">${product.name}</h3>
+                        <p class="text-gray-600 mt-2">${product.description}</p>
+                        <div class="flex items-center space-x-4 mt-5">
+                            <p class="text-lg font-bold">${product.price}</p>
+                            <a href="#" class="relative cursor-pointer group flex left-[9rem] add-to-cart" 
+                                onclick="addToCart(event, '${product.name}', '${product.image}', '${product.price}')">
+                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1">
+                                    shopping_cart
+                                </span>
+                            </a>
+                            <a href="#wish" class="relative cursor-pointer group flex left-[9rem]" onclick="addToWishlist(event, '${product.name}', '${product.image}', '${product.description}', '${product.price}')"> 
+                                <span class="material-symbols-outlined text-2xl transform transition-transform duration-300 group-hover:scale-110 group-hover:-translate-y-1 favorite-icon">
+                                    favorite
+                                </span>  
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+        }
+    }
+
+        function filterProducts() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchInput));
+            renderProducts(filteredProducts);
+        }
+
+        function filterProductsByColor(color) {
+            const filteredProducts = products.filter(product => product.color === color);
+            renderProducts(filteredProducts);
+        }
+
+        function filterProductsByPrice(maxPrice) {
+            const filteredProducts = products.filter(product => {
+                const priceValue = parseInt(product.price.replace("Rs ", "").replace(",", ""));
+                return priceValue <= maxPrice;
+            });
+            renderProducts(filteredProducts);
+        }
+
+        function sortProducts(order) {
+            const sortedProducts = [...products]; // Create a copy of the products array
+            if (order === 'low-to-high') {
+                sortedProducts.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace("Rs ", "").replace(",", ""));
+                    const priceB = parseInt(b.price.replace("Rs ", "").replace(",", ""));
+                    return priceA - priceB; // Sort in ascending order
+                });
+            } else if (order === 'high-to-low') {
+                sortedProducts.sort((a, b) => {
+                    const priceA = parseInt(a.price.replace("Rs ", "").replace(",", ""));
+                    const priceB = parseInt(b.price.replace("Rs ", "").replace(",", ""));
+                    return priceB - priceA; // Sort in descending order
+                });
+            }
+            renderProducts(sortedProducts); // Render the sorted products
+        }
+
+        function addToCart(event, name, image, price) {
+            event.preventDefault();
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ name, image, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert(`${name} has been added to your cart!`);
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartCountElement = document.getElementById("cart-count");
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length > 0 ? cart.length : 0;
+                cartCountElement.classList.toggle("hidden", cart.length === 0);
+            }
+        }
+
+        function addToWishlist(event, productName, productImage, productDescription, productPrice) {
+            event.preventDefault();
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            const existingProduct = wishlist.find(item => item.name === productName);
+            if (!existingProduct) {
+                wishlist.push({ name: productName, image: productImage, price: productPrice, description: productDescription });
+                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                alert(`${productName} has been added to your wishlist!`);
+                updateWishlistCount();
+            }
+        }
+
+        function updateWishlistCount() {
+            let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+            let wishlistCountElement = document.getElementById("wishlist-count");
+            if (wishlistCountElement) {
+                wishlistCountElement.textContent = wishlist.length > 0 ? wishlist.length : 0;
+                wishlistCountElement.classList.toggle("hidden", wishlist.length === 0);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateCartCount();
+            updateWishlistCount();
+            renderProducts(products); // Show all products by default
+
+            // Color filter event listeners
+            const colorFilters = document.querySelectorAll('.color-filter');
+            colorFilters.forEach(filter => {
+                filter.addEventListener('click', () => {
+                    const selectedColor = filter.getAttribute('data-color');
+                    filterProductsByColor(selectedColor);
+                });
+            });
+
+            // Price range event listener
+            const priceRangeInput = document.getElementById('price-range');
+            priceRangeInput.addEventListener('input', () => {
+                const selectedPrice = priceRangeInput.value;
+                document.getElementById('price-display').textContent = `Selected Price: Rs ${selectedPrice}`;
+                filterProductsByPrice(selectedPrice);
+            });
+
+            // Sort options event listener
+            const sortOptions = document.getElementById('sort-options');
+            sortOptions.addEventListener('change', () => {
+                const selectedSort = sortOptions.value;
+                sortProducts(selectedSort);
+            });
+
+            // Apply filters button
+            const applyFiltersButton = document.getElementById('apply-filters');
+            applyFiltersButton.addEventListener('click', () => {
+                const selectedPrice = priceRangeInput.value;
+                const selectedSort = sortOptions.value;
+                filterProductsByPrice(selectedPrice);
+                sortProducts(selectedSort);
+            });
+        });
+    </script>
+</body>
+</html>

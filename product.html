@@ -1,206 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Page</title>
+    <title>Multi-Category Page</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
-        /* Navbar */
-        #navbar-top {
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        .favorite-icon {
+            cursor: pointer;
+            transition: transform 0.3s;
         }
-
-        #navbar-logo,
-        #navbar-links {
-            transition: opacity 0.3s ease;
-        }
-
-        #navbar.shrunk #navbar-top {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        #navbar.shrunk #category-section {
-            padding-top: 16px;
-        }
-
-        #navbar .expanded #navbar-top {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        #navbar .expanded #category-section {
-            padding-top: 40px;
+        .favorite-icon:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
+<body class="font-sans bg-gray-100">
+    <div class="w-full max-w-full mx-auto">
+        <!-- Navigation Bar -->
+        <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg">
+            <div class="px-6 py-4 flex items-center justify-between">
+                <!-- Logo and Links -->
+                <a href="index.html" class="flex items-center gap-2">
+                    <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
+                </a>
 
-<body class="bg-gray-100">
-    <!-- Fullscreen Navbar -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full rounded-none shadow-lg transition-all duration-300 hover:bg-white" id="navbar">
-        <!-- Category Section -->
-        <div class="px-6 py-4" id="category-section">
-            <div class="flex items-center justify-center">
-                <div class="flex items-center gap-8">
-                    <!-- Category 1 (UTILITY) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('UTILITY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            UTILITY
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">BASKETS</a>
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">MULTI-PURPOSE STAND</a>
-                            <a href="#" onclick="filterProducts('UTILITY')" class="block px-8 py-2 whitespace-nowrap">TRUNK BOXES</a>
-                        </div>
+                <!-- Search Bar (Centered) -->
+                <div class="relative flex justify-center w-full">
+                    <div class="relative w-[900px]">
+                        <input type="text" id="search-input" class="w-full px-4 py-2 text-black border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Search..." oninput="filterProducts()">
+                        <span class="absolute right-3 top-3/4 transform -translate-y-3/4 text-gray-500 cursor-pointer">
+                            <span class="material-symbols-outlined">search</span>
+                        </span>
                     </div>
+                </div>
 
-                    <!-- Category 2 (LIGHTINGS) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('LIGHTINGS')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            LIGHTINGS
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">CANDLE HOLDERS</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">LANTERNS</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">DIYA</a>
-                            <a href="#" onclick="filterProducts('LIGHTINGS')" class="block px-4 py-2 whitespace-nowrap">HANGING LAMPS</a>
+                <div class="flex items-center gap-8 font-semibold">
+                
+                    <a href="cart.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                        <span class="material-symbols-outlined text-2xl">shopping_cart</span> 
+                        <span id="cart-count" class="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full absolute -top-2 -right-3 hidden">0</span>
+                    </a>                
+                    
+                    <a href="wishlist.html" class="hover:text-orange-500 transition-colors flex items-center gap-1 relative">
+                        <span class="material-symbols-outlined">favorite</span>
+                        <span id="wishlist-count" class="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2 hidden">0</span>
+                    </a>
+                    
+                </div>
+            </div>
+
+            <!-- Category Section -->
+            <div class="px-6 py-4" id="category-section">
+                <div class="flex items-center justify-center">
+                    <!-- Category List -->
+                    <div class="flex items-center gap-8  font-semibold">
+                        <!-- Category 1 (UTILITY) -->
+                        <div class="relative group">
+                            <a href="utility.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                UTILITY
+                            </a>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block ">
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('baskets')">BASKETS</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('multi-purpose')">MULTI-PURPOSE STAND</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('trunk-boxes')">TRUNK BOXES</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Category 3 (HOME DECOR) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('HOME_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            HOME DECOR
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">HANDMADE BOXES</a>
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">DECORATIVE STANDS</a>
-                            <a href="#" onclick="filterProducts('HOME_DECOR')" class="block px-4 py-2 whitespace-nowrap">JEWELLERY BOXES</a>
+            
+                        <!-- Category 2 (LIGHTINGS) -->
+                        <div class="relative group">
+                            <a href="lightings.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                LIGHTINGS
+                            </a>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('candle')">CANDLE HOLDERS</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lanterns')">LANTERNS</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('diya')">DIYA</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('lamps')">HANGING LAMPS</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Category 4 (POTTERY) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('POTTERY')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            POTTERY
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">PLANTERS</a>
-                            <a href="#" onclick="filterProducts('POTTERY')" class="block px-4 py-2">VASES</a>
+            
+                        <!-- Category 3 (ACCESSORIES) -->
+                        <div class="relative group">
+                            <a href="accessory.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                ACCESSORIES
+                            </a>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('handmade')">HANDMADE BOXES</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('decorative')">DECORATIVE STANDS</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('Jewellery')">JEWELLERY BOXES</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Category 5 (WOODEN CRAFT) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            WOODEN CRAFT
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 1</a>
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 2</a>
-                            <a href="#" onclick="filterProducts('WOODEN_CRAFT')" class="block px-4 py-2">Subcategory 3</a>
+            
+                        <!-- Category 4 (POTTERY) -->
+                        <div class="relative group">
+                            <a href="pottery.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                POTTERY
+                            </a>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('planters')">PLANTERS</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap" onclick="showCategory('vases')">VASES</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- Category 6 (WALL DECOR) -->
-                    <div class="relative group">
-                        <a href="#" onclick="filterProducts('WALL_DECOR')" class="hover:text-orange-500 transition-colors flex items-center gap-1">
-                            WALL DECOR
-                        </a>
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 1</a>
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 2</a>
-                            <a href="#" onclick="filterProducts('WALL_DECOR')" class="block px-4 py-2">Subcategory 3</a>
+            
+                        <!-- Category 5 (WOODEN CRAFT) -->
+                        <div class="relative group">
+                            <a href="wooden.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                WOODEN
+                            </a>
+                            <!-- Dropdown Menu -->
+                            <div class="absolute left-0 hidden bg-white text-black shadow-md group-hover:block">
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Picture Frame</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Shelves</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Wine Racks</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Toy Boxes</a>
+                                <a href="#" class="block px-4 py-2 hover:text-orange-500 whitespace-nowrap">Bird House</a>
+                            </div>
+                        </div>
+            
+                        <!-- Category 6 (WALL DECOR) -->
+                        <div class="relative group">
+                            <a href="wall.html" class="hover:text-orange-500 transition-colors flex items-center gap-1">
+                                WALL DECOR
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Main Container -->
-    <div class="max-w-[1200px] mx-auto py-12 px-4">
-        <!-- Title Section -->
-        <div class="text-center mb-12">
-            <span class="text-4xl font-bold text-gray-800">Our Products</span>
-            <p class="text-gray-600 mt-4 text-lg">Explore our collection of unique, handcrafted items.</p>
-        </div>
-
-        <!-- Product Grid Section -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8" id="product-grid">
-            <!-- Product 1 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
-                <img src="images/lamp-3.webp" alt="Product 1" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Hanging Lamp</div>
-                    <p class="text-gray-600 mt-2">A beautiful handcrafted hanging lamp to add elegance to any space.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$45.99</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
+        <h1 class="text-4xl font-bold text-center mb-8">Original Finds for any Budget</h1>
+        
+        <!-- products section -->
+        <section class="mb-16">
+            <span class="text-xl font-semibold text-center mb-8 relative left-[32.1rem]">Upgrade your home and style with affordable finds on ArtisanAura</span>
+            <div class="max-w-[1600px] mx-auto p-8">
+                <div class="flex flex-wrap justify-center gap-7" id="product-categories"></div>
             </div>
+        </section>
 
-            <!-- Product 2 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="LIGHTINGS">
-                <img src="images/lanterns-2.webp" alt="Product 2" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Decorative Lantern</div>
-                    <p class="text-gray-600 mt-2">Bring a cozy ambiance with this vintage-style lantern, perfect for any home.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$25.49</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
+        <!-- vendor section -->
+        <section class="mb-16">
+            <span class="text-3xl font-bold text-center mb-8 relative left-[40rem]">Discover Small Shops</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-9" id="vendor-section"></div>
+        </section>
 
-            <!-- Product 3 -->
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden product-item" data-category="UTILITY">
-                <img src="images/trunk-1.webp" alt="Product 3" class="w-full h-64 object-cover">
-                <div class="p-6">
-                    <div class="text-xl font-semibold text-gray-800">Vintage Trunk Box</div>
-                    <p class="text-gray-600 mt-2">A beautifully crafted wooden trunk box that combines functionality with style.</p>
-                    <div class="mt-4 flex justify-between items-center">
-                        <span class="text-lg font-bold text-gray-800">$69.99</span>
-                        <button class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- More Products... -->
-        </div>
-        <!-- End of Product Grid Section -->
+        <!-- Product Display -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-1 relative right-[1rem]">More Crafts To Love</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-9" id="product-display"></div>
+        </section>
     </div>
-    <!-- End of Main Container -->
+
+<!-- Footer -->
+<footer class="bg-black text-white py-12 mt-3 w-full">
+    <div class="px-6 lg:px-12">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b pb-8">
+            <div class="space-y-4">
+                <span class="text-gray-400 font-semibold">About</span>
+                <ul class="space-y-2">
+                    <a href="contact.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                        <span>contact Us</span>
+                    </a>
+                    <li class="cursor-pointer hover:text-gray-400">About Us</li>
+                    <li class="cursor-pointer hover:text-gray-400">Artisan Stories</li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <span class="text-gray-400 font-semibold">Help</span>
+                <ul class="space-y-2">
+                    <li class="cursor-pointer hover:text-gray-400">Payments</li>
+                    <li class="cursor-pointer hover:text-gray-400">Shipping</li>
+                    <li class="cursor-pointer hover:text-gray-400">Returns</li>
+                    <li class="cursor-pointer hover:text-gray-400">Cancellation & Return</li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <span class="text-gray-400 font-semibold">Consumer Policy</span>
+                <ul class="space-y-2">
+                    <li class="cursor-pointer hover:text-gray-400">Privacy Policy</li>
+                    <li class="cursor-pointer hover:text-gray-400">Terms of Use</li>
+                    <li class="cursor-pointer hover:text-gray-400">Security</li>
+                </ul>
+            </div>
+            <div class="flex items-center space-x-6">
+                <div class="relative border h-[10rem] right-[2rem] bg-gray-500"></div>
+                <div class="relative flex flex-col items-start right-[2rem] mb-[1rem] space-y-2 ">
+                    <div class="text-gray-700">
+                        <span class="text-gray-400 font-semibold">Mail Us</span>
+                        <a href="mailto:info@artisanaura.com" class="text-blue-600 hover:underline block space-y-4">info@artisanaura.com</a>
+                    </div>                        
+                    <div class="space-y-4 hover:text-gray-400">
+                        <span class="text-gray-400 font-semibold ">Follow Us</span>
+                        <div class="flex space-x-4">
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                            <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-pinterest text-2xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify">
+        <div class="flex justify-around items-center pt-6 text-center w-full px-8">
+            <a href="venregist.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                <span class="material-symbols-outlined">store</span>
+                <span>Become a Seller</span>
+            </a>
+            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                <span class="material-symbols-outlined">card_giftcard</span>
+                <span>Gift Cards</span>
+            </div>
+            <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                <span class="material-symbols-outlined">help_center</span>
+                <span>Help Center</span>
+            </div>
+            <p class="text-gray-400 text-sm">
+                © 2025 ArtisanAura. All Rights Reserved.
+            </p>
+            <div class="flex items-center space-x-4 mb-2">
+                <img src="images/payment-icon.png" alt="Visa" class="h-5">
+            </div>
+        </div>
+    </div>
+</footer>
 
     <script>
-        // Function to filter products based on category
-        function filterProducts(category) {
-            const products = document.querySelectorAll('.product-item');
-
-            if (category === 'ALL') {
-                products.forEach(product => product.style.display = 'block');
+        // Product categories data
+        const categories = [
+            { name: "Jewellery", image: "images/hero2.avif", link: "jewellery.html" },
+            { name: "Portrait", image: "images/hero4.avif", link: "portrait.html" },
+            { name: "Bags", image: "images/hero3.webp", link: "bag.html" },
+            { name: "Wedding", image: "images/wed1.jpg", link: "wed.html" },
+            { name: "Birthday", image: "images/birth3.webp", link: "birth.html" },
+            { name: "Plants", image: "images/plant3.webp", link: "plant.html" },
+            { name: "Shelves", image: "images/shelve4.webp", link: "shelve.html" },
+            { name: "Frames", image: "images/frame1.jpg", link: "frame.html" },
+            { name: "Toy Box", image: "images/toy3.jpg", link: "toy.html" },
+            { name: "Vases", image: "images/vase4.avif", link: "vase.html" },
+            { name: "Walls", image: "images/wall1.jpg", link: "wal.html" },
+            { name: "Wine Recks", image: "images/wine2.webp", link: "wine.html" },
+        ];
+    
+        // Vendor data with multiple images
+        const vendors = [
+            { 
+                name: "Craftsy", 
+                description: "A beautiful set of handmade crafts from Craftsy.", 
+                images: ["images/bask-1.webp", "images/stand-1.jpg", "images/stand-4.webp", "images/box-3.webp"], 
+                rating: 4.1,
+                link: "vendor1.html" // Link to vendor page
+            },
+            { 
+                name: "Artistry", 
+                description: "A beautiful set of handmade crafts from Artistry.", 
+                images: ["images/deco1.jpg", "images/deco2.webp", "images/deco4.jpg", "images/deco5.webp"], 
+                rating: 4.2,
+                link: "vendor2.html" // Link to vendor page
+            },
+            { 
+                name: "Loomsy", 
+                description: "Unique handmade items from local Loomsy.", 
+                images: ["images/festive2.jpg", "images/diya-1.webp", "images/lamp-1.webp", "images/festive4.jpg"], 
+                rating: 4.5,
+                link: "vendor3.html" // Link to vendor page
+            },
+            { 
+                name: "Craftsy", 
+                description: "Unique handmade items from local Craftsy.", 
+                images: ["images/plant2.jpg", "images/plant4.webp", "images/plant1.webp", "images/plant3.webp"], 
+                rating: 5.0,
+                link: "vendor4.html" // Link to vendor page
+            },
+            { 
+                name: "Artique", 
+                description: "Unique handmade items from local Artique.", 
+                images: ["images/frame2.jpg", "images/him2.webp", "images/frame3.jpg", "images/frame1.jpg"], 
+                rating: 4.5,
+                link: "vendor5.html" // Link to vendor page
+            },
+            { 
+                name: "Wovella", 
+                description: "Unique handmade items from local Wovella.", 
+                images: ["images/wall6.webp", "images/wall5.jpg", "images/wall2.webp", "images/wall1.jpg"], 
+                rating: 5.0,
+                link: "vendor6.html" // Link to vendor page
+            }
+        ];
+    
+        // Product display data
+        const products = [
+            { 
+                name: "Criss-cross Basket", 
+                description: "A woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.", 
+                price: "Rs 2,123", 
+                image: "images/bask-1.webp", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Wooden Cutlery Holder", 
+                description: "The Wooden Cutlery Holder is a handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.", 
+                price: "Rs 3,813", 
+                image: "images/stand-1.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Matki Candles", 
+                description: "These are traditional, handcrafted earthenware candles that create a warm and rustic ambiance, perfect for festive and decorative settings.", 
+                price: "Rs 2,450", 
+                image: "images/festive2.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Candelabrum", 
+                description: "It is an elegant, multi-armed candle holder designed to hold multiple candles, adding a touch of sophistication and grandeur to any setting.", 
+                price: "Rs 1,740", 
+                image: "images/candle-5.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Trinket Trove", 
+                description: "These are handcrafted lighting accents made from woven cane, offering a warm, rustic charm and an eco-friendly touch to any space.", 
+                price: "Rs 2,457", 
+                image: "images/deco4.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Velvet Vault", 
+                description: "These are historical lighting fixtures, often crafted from metal or clay with glass panels, used to illuminate spaces with a timeless, vintage charm.", 
+                price: "Rs 8,457", 
+                image: "images/deco5.webp", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Bird Pot", 
+                description: "A sleek, polished finish that adds a touch of modern elegance and timeless sophistication to any setting.", 
+                price: "Rs. 1,694", 
+                image: "images/plant3.webp", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Cow Pot", 
+                description: "A classic source of light and ambiance, crafted from wax with a wick that burns to create a warm, soothing glow.", 
+                price: "Rs 1,813", 
+                image: "images/plant4.webp", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Heritage Walnut Frame", 
+                description: "It is a sturdy and versatile storage solution with a timeless open-wire design, offering durability and industrial charm.", 
+                price: "Rs 1,670", 
+                image: "images/frame2.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Natural Pine Frame", 
+                description: "A handcrafted organizer with a natural wood finish, perfect for neatly storing and displaying utensils.", 
+                price: "Rs 3,813", 
+                image: "images/frame3.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Blooming Beauty", 
+                description: "It is a woven container featuring an interlaced pattern of materials, creating a sturdy and decorative structure.", 
+                price: "Rs 2,123", 
+                image: "images/wall1.jpg", 
+                link: "buy-now.html" 
+            },
+            { 
+                name: "Petal Paradise", 
+                description: "It is a stylish and durable storage solution featuring an elegant geometric wireframe design with a luxurious gold finish.", 
+                price: "Rs 2,457", 
+                image: "images/wall2.webp", 
+                link: "buy-now.html" 
+            }
+        ];
+    
+        // Function to render product categories
+        function renderCategories() {
+            const categoryContainer = document.getElementById('product-categories');
+            categories.forEach(category => {
+                const categoryElement = `
+                    <a href="${category.link}" class="flex flex-col items-center">
+                        <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-gray-300 hover:border-gray-500 transition">
+                            <img src="${category.image}" alt="${category.name}" class="w-full h-full object-cover">
+                        </div>
+                        <span class="mt-2 text-gray-700 font-semibold">${category.name}</span>
+                    </a>
+                `;
+                categoryContainer.innerHTML += categoryElement;
+            });
+        }
+    
+        // Function to render vendors
+        function renderVendors() {
+            const vendorContainer = document.getElementById('vendor-section');
+            vendors.forEach(vendor => {
+                const imagesHtml = vendor.images.map(image => `
+                    <a href="${vendor.link}"> <!-- Added anchor tag here -->
+                        <img src="${image}" class="w-full h-24 object-cover rounded-lg">
+                    </a>
+                `).join('');
+    
+                const vendorElement = `
+                    <div class="bg-white p-4 rounded-lg shadow-lg w-[29.3rem] flex flex-col justify-between h-full">
+                        <div class="grid grid-cols-2 gap-2">
+                            ${imagesHtml}
+                        </div>
+                        <div class="mt-4 flex items-center justify-between">
+                            <h3 class="text-xl font-bold">${vendor.name}</h3>
+                            <span class="material-symbols-outlined text-2xl favorite-icon relative right-[2rem]" onclick="addToWishlist(this)">
+                                favorite
+                            </span>
+                        </div>
+                        <p class="text-black mt-2">${vendor.description}</p>
+                        <div class="flex items-center mt-2">
+                            <span class="text-yellow-500">${'★'.repeat(Math.floor(vendor.rating))}${'☆'.repeat(5 - Math.floor(vendor.rating))}</span>
+                            <span class="ml-2 text-black">(${vendor.rating})</span>
+                        </div>
+                    </div>
+                `;
+                vendorContainer.innerHTML += vendorElement;
+            });
+        }
+    
+        // Function to render products
+        function renderProducts() {
+            const productContainer = document.getElementById('product-display');
+            products.forEach(product => {
+                const productElement = `
+                    <div class="bg-white p-4 rounded-lg shadow-lg w-[29.3rem] flex flex-col justify-between h-full">
+                        <a href="${product.link}"> <!-- Updated link to product details page -->
+                            <img src="${product.image}" class="w-full h-60 object-cover" alt="${product.name}">
+                        </a>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold">${product.name}</h3>
+                            <p class="text-gray-600">${product.description}</p>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="text-lg font-bold">${product.price}</p>
+                                <div class="flex items-center">
+                                    <span class="material-symbols-outlined text-2xl cursor-pointer" onclick="addToCart()">shopping_cart</span>
+                                    <span class="material-symbols-outlined text-2xl cursor-pointer ml-4" onclick="addToWishlist(this)">favorite</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                productContainer.innerHTML += productElement;
+            });
+        }
+    
+        // Call render functions
+        renderCategories();
+        renderVendors();
+        renderProducts();
+    
+        function addToWishlist(icon) {
+            if (icon.textContent === 'favorite') {
+                icon.textContent = 'favorite_border';
+                alert("Product added to wishlist!");
             } else {
-                products.forEach(product => {
-                    if (product.getAttribute('data-category') === category) {
-                        product.style.display = 'block';
-                    } else {
-                        product.style.display = 'none';
-                    }
-                });
+                icon.textContent = 'favorite';
+                alert("Product removed from wishlist!");
             }
         }
+    
+        function addToCart() {
+            alert("Product added to cart!");
+        }
+
+        // cart count
+    function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartCountElement = document.getElementById("cart-count");
+    if (cartCountElement) {
+        cartCountElement.textContent = cart.length > 0 ? cart.length : 0;
+        cartCountElement.classList.toggle("hidden", cart.length === 0);
+    }
+}
+
+// wishlist count
+function updateWishlistCount() {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    let wishlistCountElement = document.getElementById("wishlist-count");
+    if (wishlistCountElement) {
+        wishlistCountElement.textContent = wishlist.length > 0 ? wishlist.length : 0;
+        wishlistCountElement.classList.toggle("hidden", wishlist.length === 0);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartCount();    // Initialize cart item count
+    updateWishlistCount(); // Initialize wishlist item count
+});
+
+// search
+function filterProducts() {
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchInput));
+            renderProducts(filteredProducts);
+        }
+
     </script>
 
 </body>
-
 </html>

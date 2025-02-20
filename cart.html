@@ -3,111 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart - ArtisanAura</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Shopping Cart</title>
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-        }
-    </style>
+    <!-- Google Icon -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="./src/styles/output.css" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-gray-50">
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm w-full shadow-lg p-4">
-        <div class="container mx-auto flex items-center justify-between">
-            <h1 class="text-2xl font-bold">ArtisanAura</h1>
-            <a href="index.html" class="text-lg font-semibold hover:text-orange-500">Continue Shopping</a>
-        </div>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10">
+        <a href="index.html" class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
+        </a>
+        <a href="index.html" class="text-blue-600 font-medium hover:text-blue-800 transition">Continue Shopping</a>
     </nav>
 
-    <!-- Cart Section -->
-    <main class="container mx-auto p-6">
-        <h2 class="text-2xl font-bold mb-4">Your Shopping Cart</h2>
-        <div class="bg-white shadow-md rounded-lg p-6">
-            <table class="w-full border-collapse">
-                <thead>
-                    <tr class="text-left border-b">
-                        <th class="py-2">Product</th>
-                        <th class="py-2">Price</th>
-                        <th class="py-2">Quantity</th>
-                        <th class="py-2">Total</th>
-                        <th class="py-2">Remove</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <!-- Dynamic Cart Items Here -->
-                </tbody>
-            </table>
-            <div class="flex justify-between items-center mt-6">
-                <h3 class="text-xl font-semibold">Grand Total: <span id="grand-total">Rs 0</span></h3>
-                <button class="bg-orange-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-orange-600">Proceed to Checkout</button>
+    <!-- Cart Container -->
+    <div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold text-gray-800 border-b pb-4">Shopping Cart</h2>
+
+        <!-- Cart Items -->
+        <div id="cart-items" class="mt-6 space-y-6"></div>
+
+        <!-- Cart Summary -->
+        <div class="mt-6 border-t pt-4 flex justify-between items-center">
+            <p class="text-xl font-semibold">Total: <span id="cart-total" class="text-green-600">Rs 0</span></p>
+            <button class="bg-blue-600 text-white px-6 py-2 text-lg rounded-lg shadow-md hover:bg-blue-700 transition"
+                onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 mt-3 w-full">
+        <div class="px-6 lg:px-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 border-b pb-8">
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">About</span>
+                    <ul class="space-y-2">
+                        <a href="contact.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                            <span>contact Us</span>
+                        </a>
+                        <li class="cursor-pointer hover:text-gray-400">About Us</li>
+                        <li class="cursor-pointer hover:text-gray-400">Artisan Stories</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Help</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Payments</li>
+                        <li class="cursor-pointer hover:text-gray-400">Shipping</li>
+                        <li class="cursor-pointer hover:text-gray-400">Returns</li>
+                        <li class="cursor-pointer hover:text-gray-400">Cancellation & Return</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <span class="text-gray-400 font-semibold">Consumer Policy</span>
+                    <ul class="space-y-2">
+                        <li class="cursor-pointer hover:text-gray-400">Privacy Policy</li>
+                        <li class="cursor-pointer hover:text-gray-400">Terms of Use</li>
+                        <li class="cursor-pointer hover:text-gray-400">Security</li>
+                    </ul>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="relative border h-[10rem] right-[2rem] bg-gray-500"></div>
+                    <div class="relative flex flex-col items-start right-[2rem] mb-[1rem] space-y-2 ">
+                        <div class="text-gray-700">
+                            <span class="text-gray-400 font-semibold">Mail Us</span>
+                            <a href="mailto:info@artisanaura.com" class="text-blue-600 hover:underline block space-y-4">info@artisanaura.com</a>
+                        </div>                        
+                        <div class="space-y-4 hover:text-gray-400">
+                            <span class="text-gray-400 font-semibold ">Follow Us</span>
+                            <div class="flex space-x-4">
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-facebook text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-youtube text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-twitter text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-instagram text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-linkedin text-2xl"></i></a>
+                                <a href="#" class="cursor-pointer hover:text-gray-400"><i class="fa-brands fa-pinterest text-2xl"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify">
+            <div class="flex justify-around items-center pt-6 text-center w-full px-8">
+                <a href="venregist.html" class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">store</span>
+                    <span>Become a Seller</span>
+                </a>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">card_giftcard</span>
+                    <span>Gift Cards</span>
+                </div>
+                <div class="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+                    <span class="material-symbols-outlined">help_center</span>
+                    <span>Help Center</span>
+                </div>
+                <p class="text-gray-400 text-sm">
+                    © 2025 ArtisanAura. All Rights Reserved.
+                </p>
+                <div class="flex items-center space-x-4 mb-2">
+                    <img src="images/payment-icon.png" alt="Visa" class="h-5">
+                </div>
             </div>
         </div>
-    </main>
+    </footer>
 
     <script>
-        function getCart() {
-            return JSON.parse(localStorage.getItem("cart")) || [];
-        }
+        document.addEventListener("DOMContentLoaded", function () {
+            loadCartFromStorage();
+            updateCartUI();
+            updateCartCount();
+        });
 
-        function saveCart(cart) {
+        function loadCartFromStorage() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
             localStorage.setItem("cart", JSON.stringify(cart));
-            renderCart();
         }
 
-        function renderCart() {
-            const cartTable = document.getElementById("cart-items");
-            const grandTotal = document.getElementById("grand-total");
-            cartTable.innerHTML = "";
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cartItemsContainer.innerHTML = "";
             let total = 0;
-            let cart = getCart();
 
             if (cart.length === 0) {
-                cartTable.innerHTML = `<tr><td colspan="5" class="text-center py-4">Your cart is empty.</td></tr>`;
-                grandTotal.innerText = "Rs 0";
+                cartItemsContainer.innerHTML = "<p class='text-gray-600 text-center py-6'>Your cart is empty.</p>";
+                cartTotal.textContent = "Rs 0";
                 return;
             }
 
-            cart.forEach(item => {
-                let itemTotal = item.price * item.quantity;
-                total += itemTotal;
+            cart.forEach((item, index) => {
+                if (!item.quantity) item.quantity = 1; 
 
-                cartTable.innerHTML += `
-                    <tr class="border-b">
-                        <td class="py-4 flex items-center"><img src="${item.image}" class="w-16 h-16 rounded mr-4">${item.name}</td>
-                        <td class="py-4">Rs ${item.price}</td>
-                        <td class="py-4"><input type="number" min="1" value="${item.quantity}" class="w-16 text-center border p-1" onchange="updateQuantity(${item.id}, this.value)"></td>
-                        <td class="py-4">Rs ${itemTotal}</td>
-                        <td class="py-4"><button class="text-red-500" onclick="removeItem(${item.id})">✖</button></td>
-                    </tr>`;
+                // Ensure price is properly formatted as a number
+                let itemPrice = parseFloat(item.price.replace("Rs ", "").replace(",", "")); // Remove "Rs " and commas
+                let itemTotal = itemPrice * item.quantity; // Calculate total for this item
+                total += itemTotal; // Add to total
+
+                const cartItem = document.createElement("div");
+                cartItem.classList.add("flex", "items-center", "justify-between", "border-b", "pb-4", "mb-4");
+
+                cartItem.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-lg shadow-md">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800">${item.name}</h3>
+                            <p class="text-gray-600">${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button class="bg-gray-300 px-3 py-1 rounded-l text-lg hover:bg-gray-400" onclick="updateQuantity(${index}, -1)">-</button>
+                        <span class="px-4 text-lg">${item.quantity}</span>
+                        <button class="bg-gray-300 px-3 py-1 rounded-r text-lg hover:bg-gray-400" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                    <div class="flex items-center space-x-6">
+                        <p class="text-lg font-semibold text-gray-900">Rs ${itemTotal.toLocaleString()}</p>
+                        <button class="text-red-600 hover:text-red-800 transition" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+
+                cartItemsContainer.appendChild(cartItem);
             });
-            
-            grandTotal.innerText = `Rs ${total}`;
+
+            cartTotal.textContent = `Rs ${total.toLocaleString()}`; // Update total display
         }
-        
-        function updateQuantity(id, quantity) {
-            let cart = getCart();
-            let item = cart.find(item => item.id === id);
-            if (item && quantity > 0) {
-                item.quantity = parseInt(quantity);
-                saveCart(cart);
+
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart[index]) {
+                cart[index].quantity = Math.max(1, (cart[index].quantity || 1) + change);
+                localStorage.setItem("cart", JSON.stringify(cart));
+                updateCartUI();
             }
         }
-        
-        function removeItem(id) {
-            let cart = getCart().filter(item => item.id !== id);
-            saveCart(cart);
-        }
-        
-        document.addEventListener("DOMContentLoaded", renderCart);
-    </script>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white text-center py-4 mt-8">
-        <p>© 2025 HandiCrafts. All Rights Reserved.</p>
-    </footer>
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartUI();
+            updateCartCount();
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty! Add items before proceeding.");
+                return;
+            }
+
+            // Create a query string with product details
+            const queryString = cart.map(item => {
+                return `name=${encodeURIComponent(item.name)}&price=${encodeURIComponent(item.price)}&image=${encodeURIComponent(item.image)}`;
+            }).join('&');
+
+            // Redirect to checkout page with product details
+            window.location.href = `checkout.html?${queryString}`;
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let cartCountElement = document.getElementById("cart-count");
+
+            if (cartCountElement) {
+                cartCountElement.textContent = cart.length;
+                cartCountElement.classList.toggle("hidden", cart.length === 0);
+            }
+        }
+    </script>
 
 </body>
 </html>

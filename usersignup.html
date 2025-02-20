@@ -13,15 +13,56 @@
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .hidden {
+        display: none;
+      }
+
+      .invalid {
+        color: red;
+      }
+
+      .valid {
+        color: green;
+      }
+
+      .alert-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 5px; /* Reduced padding */
+  margin-top: 5px; /* Reduced margin */
+  width: 200px; /* Set a fixed width for the card */
+  font-size: 0.8rem; /* Reduced font size */
+}
+
+.alert-card p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.alert-card i {
+  margin-right: 4px; /* Reduced margin for the dot */
+  color: red; /* Default color for invalid */
+  font-size: 0.6rem; /* Reduced size for the dot */
+}
+
+.valid i {
+  color: green; /* Change dot color to green for valid */
+}
+
+.invalid i {
+  color: red; /* Keep dot color red for invalid */
+}
+    </style>
   </head>
 
   <body class="bg-gray-50 font-sans">
     <div class="min-h-screen flex items-center justify-center px-4 sm:px-8 lg:px-16">
       <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <div class="text-center mb-8">
-          <h1 class="text-2xl font-bold flex items-center justify-center gap-2 mb-2">
-            ArtisanAura
-          </h1>
+          <span class="text-2xl font-bold text-black" id="navbar-logo">ArtisanAura</span>
           <p class="text-gray-600">Create your account and start crafting</p>
         </div>
 
@@ -30,44 +71,69 @@
             <div>
               <label class="block text-sm font-medium mb-2">First Name</label>
               <div class="relative">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                  person
-                </span>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">person</span>
                 <input
                   type="text"
                   id="first-name"
                   placeholder="First name"
-                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
                 />
               </div>
             </div>
             <div>
               <label class="block text-sm font-medium mb-2">Last Name</label>
               <div class="relative">
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                  person
-                </span>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">person</span>
                 <input
                   type="text"
                   id="last-name"
                   placeholder="Last name"
-                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                  class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
                 />
               </div>
             </div>
           </div>
 
           <div>
+            <label class="block text-sm font-medium mb-2">Gender</label>
+            <div class="flex gap-4">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Male" class="text-orange-500" />
+                <span class="text-sm">Male</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Female" class="text-orange-500" />
+                <span class="text-sm">Female</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="gender" value="Other" class="text-orange-500" />
+                <span class="text-sm">Other</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
             <label class="block text-sm font-medium mb-2">Email Address</label>
             <div class="relative">
-              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                mail
-              </span>
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
               <input
                 type="email"
                 id="email"
                 placeholder="Enter your email"
-                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                class ="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-2">Mobile Number</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">phone</span>
+              <input
+                type="tel"
+                id="mobile"
+                placeholder="Enter your mobile number"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
               />
             </div>
           </div>
@@ -75,30 +141,35 @@
           <div>
             <label class="block text-sm font-medium mb-2">Password</label>
             <div class="relative">
-              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                lock
-              </span>
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
               <input
                 type="password"
                 id="password"
                 placeholder="Create a password"
-                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
               />
+              <i id="togglePassword" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">visibility</i>
+            </div>
+            <div id="alert-card" class="alert-card hidden absolute right-[27rem] mt-[-2rem]">
+              <p id="length" class="invalid"><i class="fas fa-circle text-[2px]"></i> At least 8 characters</p>
+              <p id="uppercase" class="invalid"><i class="fas fa-circle text-xs"></i> At least one uppercase letter</p>
+              <p id="lowercase" class="invalid"><i class="fas fa-circle text-xs"></i> At least one lowercase letter</p>
+              <p id="number" class="invalid"><i class="fas fa-circle text-xs"></i> At least one number</p>
+              <p id="symbol" class="invalid"><i class="fas fa-circle text-xs"></i> At least one special character</p>
             </div>
           </div>
 
           <div>
             <label class="block text-sm font-medium mb-2">Confirm Password</label>
             <div class="relative">
-              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                lock
-              </span>
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
               <input
                 type="password"
                 id="confirm-password"
                 placeholder="Confirm your password"
-                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]"
               />
+              <i id="toggleConfirmPassword" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">visibility</i>
             </div>
           </div>
 
@@ -143,22 +214,21 @@
           </div>
 
           <div class="mt-6 grid grid-cols-3 gap-3">
-            <!--google button  -->
-            <a
-              href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email&state=YOUR_STATE_PARAM"
+            <a href="https://accounts.google.com/o/oauth2/auth?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=email&state=YOUR_STATE_PARAM"
               class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <i class="fa-brands fa-google text-red-500 text-xl"></i>
             </a>
-            <!-- apple button -->
             <a
               href="https://your-website.com/auth/apple"
               class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <i class="fa-brands fa-apple text-xl"></i>
             </a>
-            <!-- Facebook Button -->
-            <a href="https://your-website.com/auth/facebook" class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <a
+              href="https://your-website.com/auth/facebook"
+              class="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
               <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
             </a>
           </div>
@@ -167,48 +237,119 @@
     </div>
 
     <script>
-      // Check if user is already signed up (stored in localStorage)
-      function checkIfUserExists() {
-        const user = localStorage.getItem("user");
-        return user ? JSON.parse(user) : null;
+      document.getElementById("signup-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const firstName = document.getElementById("first-name").value.trim();
+        const lastName = document.getElementById("last-name").value.trim();
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document.getElementById("confirm-password").value.trim();
+        const mobile = document.getElementById("mobile").value.trim();
+
+        if (!firstName || !lastName || !gender || !email || !password || !confirmPassword || !mobile) {
+          alert("All fields are required.");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return;
+        }
+
+        const passwordValid = validatePassword(password);
+        if (!passwordValid) {
+          alert("Password does not meet the requirements.");
+          return;
+        }
+
+        const newUser  = {
+          firstName: firstName,
+          lastName: lastName,
+          gender: gender.value,
+          email: email,
+          password: password,
+          phoneNumber: mobile
+        };
+
+        try {
+          const response = await fetch("http://192.168.1.29:8080/api/customers/add", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newUser )
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("loggedInUser ", JSON.stringify(newUser ));
+            alert("Sign up successful!");
+            window.location.href = "userlogin.html";
+          } else {
+            alert(`Signup failed: ${data.message}`);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("An error occurred. Please try again later.");
+        }
+
+        document.getElementById("signup-form").reset();
+      });
+
+      function validatePassword(password) {
+        const validations = {
+          length: password.length >= 8,
+          uppercase: /[A-Z]/.test(password),
+          lowercase: /[a-z]/.test(password),
+          number: /[0-9]/.test(password),
+          symbol: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+        };
+
+        const alertCard = document.getElementById("alert-card");
+        alertCard.classList.remove('hidden');
+
+        for (const [key, isValid] of Object.entries(validations)) {
+          const messageElement = document.getElementById(key);
+          if (isValid) {
+            messageElement.classList.remove('invalid');
+            messageElement.classList.add('valid');
+          } else {
+            messageElement.classList.remove('valid');
+            messageElement.classList.add('invalid');
+          }
+        }
+
+        return Object.values(validations).every(Boolean);
       }
 
-      // Handle the form submission
-      document
-        .getElementById("signup-form")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form submission
+      document.getElementById("password").addEventListener("focus", function() {
+        document.getElementById("alert-card").classList.remove('hidden');
+      });
 
-          // Get user inputs
-          const firstName = document.getElementById("first-name").value;
-          const lastName = document.getElementById("last-name").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          const confirmPassword =
-            document.getElementById("confirm-password").value;
+      document.getElementById("password").addEventListener("blur", function() {
+        document.getElementById("alert-card").classList.add('hidden');
+      });
 
-          // Validate passwords
-          if (password !== confirmPassword) {
-            alert("Passwords do not match");
-            return;
-          }
+      document.getElementById("password").addEventListener("input", function() {
+        validatePassword(this.value);
+      });
 
-          // Store user data in localStorage (for demonstration purposes)
-          const user = {
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-          };
+      document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+      });
 
-          // Save user data to localStorage
-          localStorage.setItem("user", JSON.stringify(user));
-
-          alert("Sign up successful!");
-
-          // Clear form after submission
-          document.getElementById("signup-form").reset();
-        });
+      document.getElementById('toggleConfirmPassword').addEventListener('click', function() {
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        confirmPasswordInput.setAttribute('type', type);
+        this.textContent = type === 'password' ? 'visibility' : 'visibility_off';
+      });
     </script>
   </body>
 </html>

@@ -6,7 +6,14 @@
   <title>Login Page</title>
   <!-- Importing Material Icons and Font Awesome -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+  <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap"
+      rel="stylesheet"
+    />
+  <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -23,47 +30,42 @@
         </div>
 
         <!-- Login Form -->
-        <form class="space-y-6">
-          <!-- Email Field -->
-          <div>
-            <label class="block text-sm font-medium mb-2">Email Address</label>
-            <div class="relative">
-              <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
-              <input 
-                type="email" 
-                placeholder="Enter your email"
-                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" 
-              />
-            </div>
-          </div>
+        <form id="login-form" class="space-y-6">
+  <!-- Email Field -->
+  <div>
+    <label class="block text-sm font-medium mb-2">Email Address</label>
+    <div class="relative">
+      <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">mail</span>
+      <input 
+        id="login-email"
+        type="email" 
+        placeholder="Enter your email"
+        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]" 
+      />
+    </div>
+  </div>
 
-          <!-- Password Field -->
-          <div>
-            <label class="block text-sm font-medium mb-2">Password</label>
-            <div class="relative">
-              <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
-              <input 
-                type="password" 
-                placeholder="Enter your password"
-                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" 
-              />
-            </div>
-          </div>
+  <!-- Password Field -->
+<div>
+  <label class="block text-sm font-medium mb-2">Password</label>
+  <div class="relative">
+    <span class="material-icons-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">lock</span>
+    <input 
+      id="login-password"
+      type="password" 
+      placeholder="Enter your password"
+      class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#F47458] bg-[#FFF6F4]" 
+    />
+    <i id="togglePassword" class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">visibility</i>
+  </div>
+</div>
 
-          <!-- Remember Me and Forgot Password -->
-          <div class="flex items-center justify-between">
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-orange-500 focus:ring-orange-500" />
-              <span class="text-sm">Remember me</span>
-            </label>
-            <a href="/forgot-password" class="text-sm text-orange-500 hover:text-orange-600 transition-colors">Forgot password?</a>
-          </div>
+  <!-- Sign In Button -->
+  <button type="submit" class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300">
+    Sign In
+  </button>
+</form>
 
-          <!-- Sign In Button -->
-          <button class="w-full bg-orange-500 text-white py-2 rounded-lg hover:bg-orange-600 transition-colors duration-300">
-            Sign In
-          </button>
-        </form>
 
         <!-- Sign Up Link -->
         <div class="mt-6 text-center">
@@ -104,32 +106,43 @@
   </div>
 
   <script>
-    // Function to check if the user is already signed up and stored in localStorage
-    function getUserData() {
-      return JSON.parse(localStorage.getItem('user')) || null;
-    }
+  document.getElementById("togglePassword").addEventListener("click", function() {
+    const passwordInput = document.getElementById("login-password");
+    const passwordType = passwordInput.getAttribute("type") === "password" ? "text" : "password";
+    passwordInput.setAttribute("type", passwordType);
+    this.textContent = passwordType === "password" ? "visibility" : "visibility_off"; // Change icon based on visibility
+  });
 
-    // Handle form submission
-    document.getElementById('login-form').addEventListener('submit', function (event) {
-      event.preventDefault(); // Prevent form submission
+  document.getElementById("login-form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-      // Get the email and password entered by the user
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+    const email = document.getElementById("login-email").value.trim();
+    const password = document.getElementById("login-password").value.trim();
 
-      // Get the stored user data from localStorage
-      const user = getUserData();
+    const data = { "email": email, "password": password };
 
-      // Check if the user exists and if the email and password match
-      if (user && user.email === email && user.password === password) {
-        alert('Login successful!');
-        // Redirect user to the dashboard or home page
-        window.location.href = 'dashboard.html'; // Replace with your dashboard URL
+    try {
+      const response = await fetch("http://192.168.1.29:8080/api/customers/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json" // Set the correct content type
+        },
+        body: JSON.stringify(data) // Convert data to JSON string
+      });
+
+      if (response.ok) {
+        const result = await response.json(); // Parse the JSON response
+        localStorage.setItem("loggedInUser ", JSON.stringify(result)); // Store user data in localStorage
+        alert("Login successful");
+        window.location.href = "index.html"; // Redirect to index page
       } else {
-        alert('Invalid email or password. Please sign up first.');
+        alert("Login failed: " + response.statusText); // Handle login failure
       }
-    });
-  </script>
-
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An error occurred during login.");
+    }
+  });
+</script>
 </body>
 </html>

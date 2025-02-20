@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- <meta charset="UTF-8" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+   
+    <title>Security Settings</title>
+  </head>
+  <body class="font-sans bg-gray-100">
+    <div id="security-settings" class="flex">
+      <aside class="w-[250px] bg-gray-50 h-screen p-6 border-r">
+        <div class="flex items-center space-x-3 mb-8">
+          <a href="index.html" class="flex items-center gap-2">
+            <span class="text-2xl font-bold text-black" id="navbar-logo"
+              >ArtisanAura</span
+            >
+          </a>
+        </div>
+
+        <nav class="space-y-2">
+          <details class="group" open>
+            <summary
+              class="flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-100"
+            >
+              <span class="material-symbols-outlined mr-3">settings</span>
+              <span class="font-medium">Account Settings</span>
+            </summary>
+            <div class="pl-12 space-y-2 mt-2">
+              <a
+                href="profile.html"
+                class="block p-2 rounded-lg hover:bg-gray-100 text-blue-500"
+                >Personal Info</a
+              >
+              <a
+                href="security.html"
+                class="block p-2 rounded-lg hover:bg-gray-100"
+                >Security</a
+              >
+              <a class="block p-2 rounded-lg hover:bg-gray-100"
+                >Notifications</a
+              >
+              <a class="block p-2 rounded-lg hover:bg-gray-100">Privacy</a>
+            </div>
+          </details>
+
+          <a class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+            <span class="material-symbols-outlined mr-3">shopping_bag</span>
+            <span class="font-medium">Orders</span>
+          </a>
+
+          <a class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+            <span class="material-symbols-outlined mr-3">favorite</span>
+            <span class="font-medium">Wishlist</span>
+          </a>
+
+          <a class="flex items-center p-3 rounded-lg hover:bg-gray-100">
+            <span class="material-symbols-outlined mr-3">payments</span>
+            <span class="font-medium">Payments</span>
+          </a>
+        </nav>
+      </aside>
+
+      <div class="flex-1 bg-white p-4 rounded-xl shadow-lg">
+        <div class="flex justify-between items-center mb-6 border-b pb-4">
+          <h2 class="text-2xl font-bold">Security Settings</h2>
+          <div class="flex items-center space-x-4">
+            <span class="material-symbols-outlined text-3xl">security</span>
+            <button
+              class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg transition-all duration-300 transform hover:scale-105"
+            >
+              Update Security
+            </button>
+          </div>
+        </div>
+
+        <form id="update-password-form">
+          <div class="space-y-4">
+            <div
+              class="p-4 border rounded-xl hover:shadow-md transition-all duration-300 max-w-lg h-auto mx-auto"
+            >
+              <div class="flex items-center space-x-4 mb-4">
+                <span class="material-symbols-outlined text-3xl text-blue-500"
+                  >lock_reset</span
+                >
+                <h3 class="text-xl font-semibold">Change Password</h3>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium"
+                    >Current Password</label
+                  >
+                  <input
+                    type="password"
+                    id="current-password"
+                    class="w-full h-12 px-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter current password"
+                    required
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium">New Password</label>
+                  <input
+                    type="password"
+                    id="new-password"
+                    class="w-full h-12 px-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Enter new password"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-2 mt-4">
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium"
+                    >Confirm New Password</label
+                  >
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    class="w-full h-12 px-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    placeholder="Confirm new password"
+                    required
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label class="block text-sm font-medium"
+                    >Security Question</label
+                  >
+                  <select
+                    id="security-question"
+                    class="w-full h-12 px-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  >
+                    <option>What was your first pet's name?</option>
+                    <option>What city were you born in?</option>
+                    <option>What is your mother's maiden name?</option>
+                  </select>
+                </div>
+              </div>
+              <div class="space-y-2 mt-4">
+                <label class="block text-sm font-medium">Answer</label>
+                <input
+                  type="text"
+                  id="security-answer"
+                  class="w-full h-12 px-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  placeholder="Enter your answer"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="w-[20rem] block mx-auto justify-center bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg transition-all duration-300 transform hover:scale-105 mt-4"
+              >
+                Update Password
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>   
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    function populateCurrentPassword() {
+      const user = JSON.parse(localStorage.getItem("loggedInUser ")) || {};
+      // console.log(user);
+
+        // console.log("Raw localStorage data:", loggedInUser);
+// console.log(user.email);
+        if (!user) {
+            alert("No logged-in user found. Please log in again.");
+            return;
+        }
+
+        try {
+          const user = JSON.parse(localStorage.getItem("loggedInUser ")) || {};
+
+            if (!user || !user.email) {
+                throw new Error("User data is incomplete.");
+            }
+            console.log("User email:", user.email);
+        } catch (error) {
+            console.error("Error parsing user data:", error);
+            alert("Invalid user data. Please log in again.");
+        }
+    }
+
+    populateCurrentPassword();
+
+    document.getElementById("update-password-form").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        // const loggedInUser = localStorage.getItem("loggedInUser");
+
+        const user = JSON.parse(localStorage.getItem("loggedInUser ")) || {};
+
+        if (!user) {
+            alert("No logged-in user found. Please log in again.");
+            return;
+        }
+
+        
+        try {
+            if (!user || !user.email) {
+                throw new Error("User data is incomplete.");
+            }
+        } catch (error) {
+            console.error("Error parsing user data:", error);
+            alert("Invalid user data. Please log in again.");
+            return;
+        }
+
+        const email = user.email;
+        const currentPassword = document.getElementById("current-password").value.trim();
+        const newPassword = document.getElementById("new-password").value.trim();
+        const confirmPassword = document.getElementById("confirm-password").value.trim();
+
+        if (newPassword !== confirmPassword) {
+            alert("New passwords do not match.");
+            return;
+        }
+
+        const requestData = {
+            email: email,
+            currentPassword: currentPassword,
+            newPassword: newPassword,
+        };
+
+        console.log(requestData);
+        try {
+            const response = await fetch("http://192.168.1.29:8080/api/customers/updatePassword", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData),
+            });
+
+            const responseData = await response.json();
+            console.log("API Response:", responseData);
+
+            if (response.ok) {
+                alert("Password updated successfully!");
+                document.getElementById("update-password-form").reset();
+            } else {
+                alert(responseData.message || "Failed to update password.");
+            }
+        } catch (error) {
+            console.error("Error updating password:", error);
+            alert("An error occurred while updating the password.");
+        }
+    });
+});
+
+    </script>
+  </body>
+</html>

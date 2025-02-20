@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisanaura Handicraft</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-green-600 text-white py-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">Artisanaura Handicraft</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#artisan-story" class="hover:underline">Our Story</a></li>
+                    <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+                    <li><a href="#products" class="hover:underline">Our Products</a></li>
+                    <li><a href="#contact" class="hover:underline">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-cover bg-center h-96" style="background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');">
+        <div class="flex items-center justify-center h-full bg-black bg-opacity-50">
+            <h2 class="text-4xl text-white font-bold">Crafting Stories, One Piece at a Time</h2>
+        </div>
+    </section>
+
+    <main class="container mx-auto p-6">
+        <!-- Artisan Story -->
+        <section id="artisan-story" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Our Artisan Story</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0" alt="Artisan at work" class="w-full md:w-1/2 h-64 object-cover rounded shadow-lg mb-4 md:mb-0 md:mr-4">
+                <p class="text-lg md:w-1/2">At Artisanaura, we believe in the power of craftsmanship. Our artisans come from diverse backgrounds, each bringing their unique skills and stories to our creations. With a passion for traditional techniques and a commitment to sustainability, we create beautiful, handcrafted items that tell a story.</p>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9" alt="Artisan Craft 1" class="w-full h-auto rounded shadow-lg">
+                <img src="https://images.unsplash.com/photo-1521747116042-5a810fda9664" alt="Artisan Craft 2" class="w-full h-auto rounded shadow-lg">
+                <img src="https://images.unsplash.com/photo-1600585154360-1c1c1c1c1c1c" alt="Artisan Craft 3" class="w-full h-auto rounded shadow-lg">
+                <img src="https://images.unsplash.com/photo-1600585154360-1c1c1c1c1c1c" alt="Artisan Craft 4" class="w-full h-auto rounded shadow-lg">
+            </div>
+        </section>
+
+        <!-- Products -->
+        <section id="products" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Our Products</h2>
+            <div class="grid grid -cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1589927986089-3581237892b8" alt="Product 1" class="w-full h-48 object-cover rounded mb-2">
+                    <h3 class="font-semibold">Handcrafted Pottery</h3>
+                    <p class="text-lg">$25.00</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1600585154360-1c1c1c1c1c1c" alt="Product 2" class="w-full h-48 object-cover rounded mb-2">
+                    <h3 class="font-semibold">Woven Baskets</h3>
+                    <p class="text-lg">$30.00</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1600585154360-1c1c1c1c1c1c" alt="Product 3" class="w-full h-48 object-cover rounded mb-2">
+                    <h3 class="font-semibold">Wooden Sculptures</h3>
+                    <p class="text-lg">$45.00</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow-lg transition-transform transform hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1600585154360-1c1c1c1c1c1c" alt="Product 4" class="w-full h-48 object-cover rounded mb-2">
+                    <h3 class="font-semibold">Textile Art</h3>
+                    <p class="text-lg">$60.00</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+            <p class="text-lg mb-4">If you have any questions or would like to learn more about our artisans and products, feel free to reach out!</p>
+            <p class="text-lg">Email: <a href="mailto:info@artisanaura.com" class="text-green-600 hover:underline">info@artisanaura.com</a></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-green-600 text-white py-4">
+        <p class="text-center">&copy; 2023 Artisanaura Handicraft. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        const links = document.querySelectorAll('nav a');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
